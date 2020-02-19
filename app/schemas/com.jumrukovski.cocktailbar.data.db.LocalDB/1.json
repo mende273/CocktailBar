@@ -1,0 +1,322 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "bfcaa76ce820d4274b3720f5a69e1690",
+    "entities": [
+      {
+        "tableName": "Drink",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idDrink` INTEGER, `strDrink` TEXT, `strDrinkAlternate` TEXT, `strDrinkES` TEXT, `strDrinkDE` TEXT, `strDrinkFR` TEXT, `strTags` TEXT, `strVideo` TEXT, `strCategory` TEXT, `strIBA` TEXT, `strAlcoholic` TEXT, `strGlass` TEXT, `strInstructions` TEXT, `strInstructionsES` TEXT, `strInstructionsDE` TEXT, `strInstructionsFR` TEXT, `strDrinkThumb` TEXT, `strIngredient1` TEXT, `strIngredient2` TEXT, `strIngredient3` TEXT, `strIngredient4` TEXT, `strIngredient5` TEXT, `strIngredient6` TEXT, `strIngredient7` TEXT, `strIngredient8` TEXT, `strIngredient9` TEXT, `strIngredient10` TEXT, `strIngredient11` TEXT, `strIngredient12` TEXT, `strIngredient13` TEXT, `strIngredient14` TEXT, `strIngredient15` TEXT, `strMeasure1` TEXT, `strMeasure2` TEXT, `strMeasure3` TEXT, `strMeasure4` TEXT, `strMeasure5` TEXT, `strMeasure6` TEXT, `strMeasure7` TEXT, `strMeasure8` TEXT, `strMeasure9` TEXT, `strMeasure10` TEXT, `strMeasure11` TEXT, `strMeasure12` TEXT, `strMeasure13` TEXT, `strMeasure14` TEXT, `strMeasure15` TEXT, `strCreativeCommonsConfirmed` TEXT, `dateModified` TEXT, PRIMARY KEY(`idDrink`))",
+        "fields": [
+          {
+            "fieldPath": "idDrink",
+            "columnName": "idDrink",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strDrink",
+            "columnName": "strDrink",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strDrinkAlternate",
+            "columnName": "strDrinkAlternate",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strDrinkES",
+            "columnName": "strDrinkES",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strDrinkDE",
+            "columnName": "strDrinkDE",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strDrinkFR",
+            "columnName": "strDrinkFR",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strTags",
+            "columnName": "strTags",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strVideo",
+            "columnName": "strVideo",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strCategory",
+            "columnName": "strCategory",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIBA",
+            "columnName": "strIBA",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strAlcoholic",
+            "columnName": "strAlcoholic",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strGlass",
+            "columnName": "strGlass",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strInstructions",
+            "columnName": "strInstructions",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strInstructionsES",
+            "columnName": "strInstructionsES",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strInstructionsDE",
+            "columnName": "strInstructionsDE",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strInstructionsFR",
+            "columnName": "strInstructionsFR",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strDrinkThumb",
+            "columnName": "strDrinkThumb",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient1",
+            "columnName": "strIngredient1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient2",
+            "columnName": "strIngredient2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient3",
+            "columnName": "strIngredient3",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient4",
+            "columnName": "strIngredient4",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient5",
+            "columnName": "strIngredient5",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient6",
+            "columnName": "strIngredient6",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient7",
+            "columnName": "strIngredient7",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient8",
+            "columnName": "strIngredient8",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient9",
+            "columnName": "strIngredient9",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient10",
+            "columnName": "strIngredient10",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient11",
+            "columnName": "strIngredient11",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient12",
+            "columnName": "strIngredient12",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient13",
+            "columnName": "strIngredient13",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient14",
+            "columnName": "strIngredient14",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strIngredient15",
+            "columnName": "strIngredient15",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure1",
+            "columnName": "strMeasure1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure2",
+            "columnName": "strMeasure2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure3",
+            "columnName": "strMeasure3",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure4",
+            "columnName": "strMeasure4",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure5",
+            "columnName": "strMeasure5",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure6",
+            "columnName": "strMeasure6",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure7",
+            "columnName": "strMeasure7",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure8",
+            "columnName": "strMeasure8",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure9",
+            "columnName": "strMeasure9",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure10",
+            "columnName": "strMeasure10",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure11",
+            "columnName": "strMeasure11",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure12",
+            "columnName": "strMeasure12",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure13",
+            "columnName": "strMeasure13",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure14",
+            "columnName": "strMeasure14",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strMeasure15",
+            "columnName": "strMeasure15",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "strCreativeCommonsConfirmed",
+            "columnName": "strCreativeCommonsConfirmed",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "dateModified",
+            "columnName": "dateModified",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "idDrink"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bfcaa76ce820d4274b3720f5a69e1690')"
+    ]
+  }
+}

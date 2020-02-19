@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">CocktailBar</string>
+
+    <!-- Bottom menu values -->
+    <string name="action_home">Home</string>
+    <string name="action_favorite_cocktails">Favorite</string>
+    <string name="action_filter">Filter</string>
+    <string name="action_search">Search</string>
+
+    <!-- FilterFragment values -->
+    <string name="filter_none">None</string>
+    <string name="filter_alcoholic">Alcoholic</string>
+    <string name="filter_glass">Glass</string>
+    <string name="filter_ingredients">Ingredients</string>
+    <string name="filter_category">Category</string>
+    <string name="filter_by">Filter By</string>
+
+    <!-- SearchFragment values -->
+    <string name="search_ingredient">Ingredient</string>
+    <string name="search_cocktail">Cocktail</string>
+    <string name="search_cocktail_hint">Example: Margarita</string>
+    <string name="search_ingredient_hint">Ex: Gin</string>
+    <string name="error_search_field_empty">Search field is empty</string>
+    <string name="error_no_drinks_with_name">No Drinks were found with the specified name</string>
+
+    <!-- HomeFragment values -->
+    <string name="drinks_by_first_letter">Drinks by first letter</string>
+
+    <!-- DrinkDetailsActivity values -->
+    <string name="instructions">Instructions</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="drink_type">%1$s | %2$s</string>
+
+    <!-- IngredientDetailsActivity values -->
+    <string name="type">Type: %1$s</string>
+    <string name="alcohol">Alcohol: %1$s</string>
+</resources>

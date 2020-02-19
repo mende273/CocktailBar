@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/actionHome"
+        android:checked="true"
+        android:icon="@drawable/ic_home_white_24dp"
+        android:iconTint="@color/colorWhite"
+        android:title="@string/action_home" />
+
+    <item
+        android:id="@+id/actionFavorite"
+        android:icon="@drawable/ic_saved_white_24dp"
+        android:iconTint="@color/colorWhite"
+        android:title="@string/action_favorite_cocktails" />
+
+    <item
+        android:id="@+id/actionFilter"
+        android:icon="@drawable/ic_filter_white_24dp"
+        android:iconTint="@color/colorWhite"
+        android:title="@string/action_filter" />
+
+    <item
+        android:id="@+id/actionSearch"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:iconTint="@color/colorWhite"
+        android:title="@string/action_search" />
+</menu>
