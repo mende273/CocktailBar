@@ -15,12 +15,12 @@ import com.jumrukovski.cocktailbar.network.Resource
 import com.jumrukovski.cocktailbar.network.Status
 import com.jumrukovski.cocktailbar.ui.adapters.FilterAdapter
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FilterFragment :
-    BaseFragment<FragmentFilterBinding, FilterViewModel>(FilterViewModel::class) {
+    BaseFragment<FragmentFilterBinding, FilterViewModel>() {
 
     private val filterAdapter: FilterAdapter by inject()
 
@@ -78,7 +78,7 @@ class FilterFragment :
 
     private fun initFiltersAdapter() {
         binding.filters.adapter =
-            ArrayAdapter(activity!!, R.layout.item_spinner_filter, viewModel.getSupportedFilters())
+            ArrayAdapter(requireActivity(), R.layout.item_spinner_filter, viewModel.getSupportedFilters())
     }
 
     private fun setListeners() {
@@ -93,4 +93,6 @@ class FilterFragment :
             return FilterFragment()
         }
     }
+
+    override val viewModel: FilterViewModel by viewModel()
 }

@@ -10,7 +10,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import com.jumrukovski.cocktailbar.R
 
-class CenteredToolbar(context: Context?, attrs: AttributeSet?) : Toolbar(context, attrs) {
+class CenteredToolbar(context: Context?, attrs: AttributeSet?) : Toolbar(context!!, attrs) {
 
     private var centeredTitleTextView: TextView? = null
 

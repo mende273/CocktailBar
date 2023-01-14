@@ -8,7 +8,7 @@ import com.jumrukovski.cocktailbar.features.filter.FilteredDrinksViewModel
 import com.jumrukovski.cocktailbar.features.home.HomeViewModel
 import com.jumrukovski.cocktailbar.features.main.MainViewModel
 import com.jumrukovski.cocktailbar.features.search.SearchViewModel
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {

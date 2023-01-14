@@ -6,11 +6,10 @@ import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.base.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.data.model.Filter
 import com.jumrukovski.cocktailbar.databinding.FragmentFilteredDrinksBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FilteredDrinksFragment :
-    DisplayDrinksFragment<FragmentFilteredDrinksBinding, FilteredDrinksViewModel>(
-        FilteredDrinksViewModel::class
-    ) {
+    DisplayDrinksFragment<FragmentFilteredDrinksBinding, FilteredDrinksViewModel>() {
 
     override fun init() {
         initItemsAdapter(binding.items)
@@ -33,4 +32,6 @@ class FilteredDrinksFragment :
             return fragment
         }
     }
+
+    override val viewModel: FilteredDrinksViewModel by viewModel()
 }

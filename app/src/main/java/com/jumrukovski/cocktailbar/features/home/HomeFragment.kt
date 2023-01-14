@@ -7,9 +7,12 @@ import android.widget.ProgressBar
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.base.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.databinding.FragmentHomeBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment :
-    DisplayDrinksFragment<FragmentHomeBinding, HomeViewModel>(HomeViewModel::class) {
+    DisplayDrinksFragment<FragmentHomeBinding, HomeViewModel>() {
+
+    override val viewModel: HomeViewModel by viewModel()
 
     private val onFilterClickedListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -28,7 +31,7 @@ class HomeFragment :
 
     private fun initFilterAdapter() {
         binding.filters.adapter =
-            ArrayAdapter(activity!!, R.layout.item_spinner_filter, viewModel.filters)
+            ArrayAdapter(requireActivity(), R.layout.item_spinner_filter, viewModel.filters)
     }
 
     private fun setListeners() {

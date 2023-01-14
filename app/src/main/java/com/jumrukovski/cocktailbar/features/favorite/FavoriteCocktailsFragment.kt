@@ -4,11 +4,10 @@ import android.widget.ProgressBar
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.base.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.databinding.FragmentFavoriteBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteCocktailsFragment :
-    DisplayDrinksFragment<FragmentFavoriteBinding, FavoriteCocktailsViewModel>(
-        FavoriteCocktailsViewModel::class
-    ) {
+    DisplayDrinksFragment<FragmentFavoriteBinding, FavoriteCocktailsViewModel>() {
 
     override fun init() {
         initItemsAdapter(binding.items)
@@ -28,4 +27,6 @@ class FavoriteCocktailsFragment :
             return FavoriteCocktailsFragment()
         }
     }
+
+    override val viewModel: FavoriteCocktailsViewModel by viewModel()
 }

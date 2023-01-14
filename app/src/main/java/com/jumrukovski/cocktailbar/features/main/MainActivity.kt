@@ -6,10 +6,9 @@ import com.jumrukovski.cocktailbar.base.BaseActivity
 import com.jumrukovski.cocktailbar.databinding.ActivityMainBinding
 import com.jumrukovski.cocktailbar.ui.adapters.FragmentPagerAdapter
 import com.fxn.OnBubbleClickListener
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
-    MainViewModel::class
-) {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun init() {
         initViewPager()
@@ -41,4 +40,5 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(
     }
 
     override fun getLayoutRes() = R.layout.activity_main
+    override val viewModel: MainViewModel by viewModel()
 }

@@ -11,14 +11,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
-import kotlin.reflect.KClass
 
-abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel>(clazz: KClass<VM>) : Fragment() {
+abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment() {
 
     protected lateinit var binding: DB
 
-    protected val viewModel: VM by viewModel(clazz)
+    protected abstract val viewModel: VM
 
     @LayoutRes
     abstract fun getLayoutRes(): Int

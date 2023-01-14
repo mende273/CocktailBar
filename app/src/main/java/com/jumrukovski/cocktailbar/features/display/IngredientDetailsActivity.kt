@@ -12,13 +12,11 @@ import com.jumrukovski.cocktailbar.network.ApiService
 import com.jumrukovski.cocktailbar.network.Resource
 import com.jumrukovski.cocktailbar.network.Status
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class IngredientDetailsActivity :
-    BaseActivity<ActivityIngredientDetailsBinding, IngredientDetailsViewModel>(
-        IngredientDetailsViewModel::class
-    ) {
+    BaseActivity<ActivityIngredientDetailsBinding, IngredientDetailsViewModel>() {
 
     private fun collectData(data: Flow<Resource<Ingredient>>) {
         lifecycleScope.launch {
@@ -64,4 +62,6 @@ class IngredientDetailsActivity :
             context.startActivity(starter)
         }
     }
+
+    override val viewModel: IngredientDetailsViewModel by viewModel()
 }

@@ -14,13 +14,11 @@ import com.jumrukovski.cocktailbar.network.Resource
 import com.jumrukovski.cocktailbar.network.Status
 import com.jumrukovski.cocktailbar.ui.adapters.CocktailAdapter
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import kotlin.reflect.KClass
 
-abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel>(clazz: KClass<VM>) :
-    BaseFragment<DB, VM>(clazz) {
+abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
+    BaseFragment<DB, VM>() {
 
     private val adapter: CocktailAdapter by inject()
 

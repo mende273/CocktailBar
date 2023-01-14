@@ -15,12 +15,12 @@ import com.jumrukovski.cocktailbar.databinding.ActivityDrinkDetailsBinding
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.network.Status
 import com.jumrukovski.cocktailbar.ui.adapters.IngredientsAdapter
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DrinkDetailsActivity :
-    BaseActivity<ActivityDrinkDetailsBinding, DrinkDetailsViewModel>(DrinkDetailsViewModel::class) {
+    BaseActivity<ActivityDrinkDetailsBinding, DrinkDetailsViewModel>() {
 
     private val ingredientsAdapter: IngredientsAdapter by inject()
 
@@ -53,6 +53,7 @@ class DrinkDetailsActivity :
                 when (it.status) {
                     Status.SUCCESS -> showData(it.data!!)
                     Status.ERROR -> showErrorMessage(it.message)
+                    Status.LOADING -> ""
                 }
             }
         }
@@ -137,4 +138,6 @@ class DrinkDetailsActivity :
             context.startActivity(starter, options.toBundle())
         }
     }
+
+    override val viewModel: DrinkDetailsViewModel by viewModel()
 }
