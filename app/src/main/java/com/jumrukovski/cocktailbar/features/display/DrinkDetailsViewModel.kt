@@ -6,6 +6,7 @@ import com.jumrukovski.cocktailbar.data.domain.AddFavoriteDrinkInDBUseCase
 import com.jumrukovski.cocktailbar.data.domain.GetDrinkDetailsUseCase
 import com.jumrukovski.cocktailbar.data.domain.GetFavoriteDrinkFromDBUseCase
 import com.jumrukovski.cocktailbar.data.domain.RemoveFavoriteDrinkFromDBUseCase
+import com.jumrukovski.cocktailbar.data.domain.mappers.asDrinkUIState
 import com.jumrukovski.cocktailbar.data.model.Drink
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
@@ -25,7 +26,7 @@ class DrinkDetailsViewModel(
         this.drink = drink
     }
 
-    fun getDrinkDetails() = getDrinkDetails.loadData(drink.idDrink.toString())
+    fun getDrinkDetails() = getDrinkDetails.invoke(drink.idDrink.toString()).asDrinkUIState(viewModelScope)
 
     fun getFavoriteDrinkFromDB() =
         getFavoriteDrink.getFavoriteDrink(drink.idDrink!!).flowOn(Dispatchers.IO)

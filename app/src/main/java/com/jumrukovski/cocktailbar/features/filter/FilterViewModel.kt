@@ -1,7 +1,9 @@
 package com.jumrukovski.cocktailbar.features.filter
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.jumrukovski.cocktailbar.data.domain.GetFilterListUseCase
+import com.jumrukovski.cocktailbar.data.domain.mappers.asDrinksUIState
 import com.jumrukovski.cocktailbar.data.model.Filter
 
 class FilterViewModel(private val getFilterList: GetFilterListUseCase) : ViewModel() {
@@ -25,7 +27,7 @@ class FilterViewModel(private val getFilterList: GetFilterListUseCase) : ViewMod
         }
     }
 
-    fun fetchData() = getFilterList.loadData(currentFilter.param, "list")
+    fun fetchData() = getFilterList.invoke(currentFilter.param, "list").asDrinksUIState(viewModelScope)
 
     fun createFilter(value: String): Filter {
         return Filter(currentFilter.title, currentFilter.param, value)

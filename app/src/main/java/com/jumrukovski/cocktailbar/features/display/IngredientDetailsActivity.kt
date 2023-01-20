@@ -4,13 +4,12 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import coil.api.load
+import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.base.BaseActivity
 import com.jumrukovski.cocktailbar.data.model.Ingredient
 import com.jumrukovski.cocktailbar.databinding.ActivityIngredientDetailsBinding
-import com.jumrukovski.cocktailbar.R
+import com.jumrukovski.cocktailbar.ui.state.UIState
 import com.jumrukovski.cocktailbar.network.ApiService
-import com.jumrukovski.cocktailbar.network.Resource
-import com.jumrukovski.cocktailbar.network.Status
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -18,22 +17,25 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class IngredientDetailsActivity :
     BaseActivity<ActivityIngredientDetailsBinding, IngredientDetailsViewModel>() {
 
-    private fun collectData(data: Flow<Resource<Ingredient>>) {
+    private fun collectData(data: Flow<UIState<Ingredient>>) {
         lifecycleScope.launch {
-            data.collect {
+            data.collect { uiState ->
                 with(binding) {
-                    when (it.status) {
-                        Status.LOADING -> showProgress(progress, true)
-                        Status.SUCCESS -> {
+                    when (uiState) {
+                        is UIState.Loading -> showProgress(progress, uiState.isLoading)
+                        is UIState.Success -> {
                             showProgress(progress, false)
-                            type.text = String.format(resources.getString(R.string.type), it.data?.strType)
-                            alcohol.text = String.format(resources.getString(R.string.alcohol), it.data?.strAlcohol)
-                            description.text = it.data?.strDescription
+                            uiState.data?.let { data ->
+                                type.text = String.format(resources.getString(R.string.type), data.strType)
+                                alcohol.text = String.format(resources.getString(R.string.alcohol), data.strAlcohol)
+                                description.text = data.strDescription
+                            }
                         }
-                        Status.ERROR -> {
+                        is UIState.Error -> {
                             showProgress(progress, false)
-                            showErrorMessage(it.message)
+                            //todo showErrorMessage(uiState.code)
                         }
+                        is UIState.NoData -> "" //todo
                     }
                 }
             }

@@ -2,10 +2,12 @@ package com.jumrukovski.cocktailbar.features.filter
 
 import android.os.Bundle
 import android.widget.ProgressBar
+import androidx.lifecycle.lifecycleScope
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.base.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.data.model.Filter
 import com.jumrukovski.cocktailbar.databinding.FragmentFilteredDrinksBinding
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FilteredDrinksFragment :
@@ -14,7 +16,9 @@ class FilteredDrinksFragment :
     override fun init() {
         initItemsAdapter(binding.items)
         val filter = arguments?.getSerializable(EXTRA_FILTER) as Filter
-        collectData(viewModel.fetchItems(filter))
+        lifecycleScope.launch {
+            collectData(viewModel.fetchItems(filter))
+        }
     }
 
     override fun getProgressView(): ProgressBar = binding.progress
