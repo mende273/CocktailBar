@@ -38,9 +38,11 @@ abstract class BaseBindingAdapter<I> : RecyclerView.Adapter<BaseBindingViewHolde
     }
 
     @JvmOverloads
-    fun addItems(itemsToAdd: List<I>, position: Int = items.size) {
-        items.addAll(position, itemsToAdd)
-        notifyItemRangeInserted(position, itemsToAdd.size)
+    fun addItems(itemsToAdd: List<I>?, position: Int = items.size) {
+        itemsToAdd?.let {
+            items.addAll(position, itemsToAdd)
+            notifyItemRangeInserted(position, itemsToAdd.size)
+        }
     }
 
     fun updateItem(position: Int, item: I) {

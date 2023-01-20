@@ -11,8 +11,7 @@ import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.base.BaseFragment
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.FragmentFilterBinding
-import com.jumrukovski.cocktailbar.network.Resource
-import com.jumrukovski.cocktailbar.network.Status
+import com.jumrukovski.cocktailbar.ui.state.UIState
 import com.jumrukovski.cocktailbar.ui.adapters.FilterAdapter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -26,7 +25,9 @@ class FilterFragment :
 
     private val onDrinkClickedListener = object : BaseBindingAdapter.ItemClickListener<Drink> {
         override fun onClick(item: Drink, position: Int, sharedViews: Array<View>) {
-            FilteredDrinksActivity.start(activity!!, viewModel.createFilter(item.getFilterTitle()))
+            activity?.let {
+                FilteredDrinksActivity.start(it, viewModel.createFilter(item.getFilterTitle()))
+            }
         }
     }
 
@@ -36,28 +37,27 @@ class FilterFragment :
 
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             viewModel.setCurrentFilter((view as TextView).text.toString())
-            viewModel.fetchData()
-            collectData(viewModel.fetchData())
+            lifecycleScope.launch {
+                collectData(viewModel.fetchData())
+            }
         }
     }
 
-    private fun collectData(data: Flow<Resource<List<Drink>>>) {
+    private fun collectData(data: Flow<UIState<List<Drink>>>) {
         filterAdapter.clear()
         lifecycleScope.launch {
-            data.collect {
-                when (it.status) {
-                    Status.LOADING -> showProgress(binding.progress, true)
-                    Status.SUCCESS -> {
+            data.collect { uiState ->
+                when (uiState) {
+                    is UIState.Loading -> showProgress(binding.progress, uiState.isLoading)
+                    is UIState.Success -> {
                         showProgress(binding.progress, false)
-                        filterAdapter.apply {
-                            addItems(it.data!!)
-                            removeLastIfNull()
-                        }
+                        filterAdapter.apply { uiState.data?.let { addItems(it) } }
                     }
-                    Status.ERROR -> {
+                    is UIState.Error -> {
                         showProgress(binding.progress, false)
-                        showErrorMessage(it.message)
+                        // todo showErrorMessage(uiState.code)
                     }
+                    is UIState.NoData -> "" // todo
                 }
             }
         }
@@ -78,7 +78,11 @@ class FilterFragment :
 
     private fun initFiltersAdapter() {
         binding.filters.adapter =
-            ArrayAdapter(requireActivity(), R.layout.item_spinner_filter, viewModel.getSupportedFilters())
+            ArrayAdapter(
+                requireActivity(),
+                R.layout.item_spinner_filter,
+                viewModel.getSupportedFilters()
+            )
     }
 
     private fun setListeners() {

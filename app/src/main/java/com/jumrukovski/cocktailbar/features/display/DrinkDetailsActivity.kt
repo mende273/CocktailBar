@@ -4,16 +4,17 @@ import android.app.Activity
 import android.content.Intent
 import android.view.View
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.util.Pair
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.api.load
+import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.base.BaseActivity
 import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.ActivityDrinkDetailsBinding
-import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.network.Status
+import com.jumrukovski.cocktailbar.ui.state.UIState
 import com.jumrukovski.cocktailbar.ui.adapters.IngredientsAdapter
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -26,8 +27,10 @@ class DrinkDetailsActivity :
 
     private val itemClickListener =
         object : BaseBindingAdapter.ItemClickListener<Pair<String, String>> {
-            override fun onClick(item: Pair<String, String>, p: Int, sharedViews: Array<View>) {
-                IngredientDetailsActivity.start(this@DrinkDetailsActivity, item.first!!)
+            override fun onClick(item: Pair<String, String>, position: Int, sharedViews: Array<View>) {
+                item.first?.let {
+                    IngredientDetailsActivity.start(this@DrinkDetailsActivity, it)
+                }
             }
         }
 
@@ -49,11 +52,12 @@ class DrinkDetailsActivity :
 
     private fun collectFullDetailsData() {
         lifecycleScope.launch {
-            viewModel.getDrinkDetails().collect {
-                when (it.status) {
-                    Status.SUCCESS -> showData(it.data!!)
-                    Status.ERROR -> showErrorMessage(it.message)
-                    Status.LOADING -> ""
+            viewModel.getDrinkDetails().collect { uiState ->
+                when (uiState) {
+                    is UIState.Success -> uiState.data?.let { showData(it) }
+                    is UIState.Error -> showErrorMessage("Something went wrong")
+                    is UIState.Loading -> ""//todo
+                    is UIState.NoData -> ""//todo
                 }
             }
         }
@@ -69,12 +73,8 @@ class DrinkDetailsActivity :
             instructions.text = drink.strInstructions
         }
 
-        if (drink.getIngredientsWithMeasurements() != null) {
-            val list =
-                drink.getIngredientsWithMeasurements().filter { item -> item.first != null }
-
-            ingredientsAdapter.addItems(list)
-        }
+        ingredientsAdapter.addItems(drink.getIngredientsWithMeasurements()
+            .filter { item -> item.first != null })
     }
 
     override fun init() {
@@ -102,7 +102,7 @@ class DrinkDetailsActivity :
             false -> R.drawable.ic_saved_white_24dp
         }
 
-        binding.save.setImageDrawable(resources.getDrawable(res))
+        binding.save.setImageDrawable(ResourcesCompat.getDrawable(resources,res,null))
     }
 
     private fun setListeners() {

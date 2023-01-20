@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.features.display.DrinkDetailsActivity
-import com.jumrukovski.cocktailbar.network.Resource
-import com.jumrukovski.cocktailbar.network.Status
+import com.jumrukovski.cocktailbar.ui.state.UIState
 import com.jumrukovski.cocktailbar.ui.adapters.CocktailAdapter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -23,8 +22,10 @@ abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
     private val adapter: CocktailAdapter by inject()
 
     private val itemClickListener = object : BaseBindingAdapter.ItemClickListener<Drink> {
-        override fun onClick(item: Drink, p: Int, sViews: Array<View>) {
-            DrinkDetailsActivity.start(activity!!, item, sViews[0], sViews[1])
+        override fun onClick(item: Drink, position: Int, sharedViews: Array<View>) {
+            activity?.let {
+                DrinkDetailsActivity.start(it, item, sharedViews[0], sharedViews[1])
+            }
         }
     }
 
@@ -38,7 +39,7 @@ abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
 
     abstract fun getProgressView(): ProgressBar
 
-    protected fun collectData(data: Flow<Resource<List<Drink>>>) {
+    protected fun collectData(data: Flow<UIState<List<Drink>>>) {
         lifecycleScope.launch {
             data.collect {
                 displayData(it)
@@ -46,17 +47,21 @@ abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
         }
     }
 
-    private fun displayData(data: Resource<List<Drink>>) {
+    private fun displayData(uiState: UIState<List<Drink>>) {
         adapter.clear()
-        when (data.status) {
-            Status.LOADING -> showProgress(getProgressView(), true)
-            Status.SUCCESS -> {
+        when (uiState) {
+            is UIState.Loading -> showProgress(getProgressView(), uiState.isLoading)
+            is UIState.Success -> {
                 showProgress(getProgressView(), false)
-                adapter.addItems(data.data!!)
+                uiState.data?.let { adapter.addItems(it) }
             }
-            Status.ERROR -> {
+            is UIState.Error -> {
                 showProgress(getProgressView(), false)
-                showErrorMessage(data.message)
+                showErrorMessage(uiState.code)
+            }
+            UIState.NoData -> {
+                showProgress(getProgressView(), false)
+                // todo show empty view
             }
         }
     }

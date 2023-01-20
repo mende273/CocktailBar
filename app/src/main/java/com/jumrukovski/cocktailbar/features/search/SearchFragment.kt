@@ -4,9 +4,11 @@ import android.content.Context
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
+import androidx.lifecycle.lifecycleScope
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.base.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.databinding.FragmentSearchBinding
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment :
@@ -40,7 +42,9 @@ class SearchFragment :
             return
         }
 
-        collectData(viewModel.fetchData(text))
+        lifecycleScope.launch {
+            collectData(viewModel.fetchData(text))
+        }
     }
 
     override fun getLayoutRes() = R.layout.fragment_search

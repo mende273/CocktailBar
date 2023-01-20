@@ -4,9 +4,11 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
+import androidx.lifecycle.lifecycleScope
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.base.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment :
@@ -19,7 +21,9 @@ class HomeFragment :
         }
 
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            collectData(viewModel.fetchItems(position))
+            lifecycleScope.launch {
+                collectData(viewModel.fetchItems(position))
+            }
         }
     }
 
@@ -30,8 +34,10 @@ class HomeFragment :
     }
 
     private fun initFilterAdapter() {
-        binding.filters.adapter =
-            ArrayAdapter(requireActivity(), R.layout.item_spinner_filter, viewModel.filters)
+        activity?.let {
+            binding.filters.adapter =
+                ArrayAdapter(it, R.layout.item_spinner_filter, viewModel.filters)
+        }
     }
 
     private fun setListeners() {
