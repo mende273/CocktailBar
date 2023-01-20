@@ -1,7 +1,7 @@
 package com.jumrukovski.cocktailbar
 
 import android.app.Application
-import com.jumrukovski.cocktailbar.injection.*
+import com.jumrukovski.cocktailbar.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

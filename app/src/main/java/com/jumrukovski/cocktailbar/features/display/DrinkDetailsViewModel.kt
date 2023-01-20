@@ -2,11 +2,11 @@ package com.jumrukovski.cocktailbar.features.display
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jumrukovski.cocktailbar.data.domain.AddFavoriteDrinkInDBUseCase
-import com.jumrukovski.cocktailbar.data.domain.GetDrinkDetailsUseCase
-import com.jumrukovski.cocktailbar.data.domain.GetFavoriteDrinkFromDBUseCase
-import com.jumrukovski.cocktailbar.data.domain.RemoveFavoriteDrinkFromDBUseCase
-import com.jumrukovski.cocktailbar.data.domain.mappers.asDrinkUIState
+import com.jumrukovski.cocktailbar.domain.usecase.AddFavoriteDrinkInDBUseCase
+import com.jumrukovski.cocktailbar.domain.usecase.GetDrinkDetailsUseCase
+import com.jumrukovski.cocktailbar.domain.usecase.GetFavoriteDrinkFromDBUseCase
+import com.jumrukovski.cocktailbar.domain.usecase.RemoveFavoriteDrinkFromDBUseCase
+import com.jumrukovski.cocktailbar.domain.mapper.asDrinkUIState
 import com.jumrukovski.cocktailbar.data.model.Drink
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn

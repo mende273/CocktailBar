@@ -1,7 +1,7 @@
-package com.jumrukovski.cocktailbar.data.domain
+package com.jumrukovski.cocktailbar.domain.usecase
 
 import com.jumrukovski.cocktailbar.base.BaseUseCase
-import com.jumrukovski.cocktailbar.data.domain.mappers.mapIngredientToResponseData
+import com.jumrukovski.cocktailbar.domain.mapper.mapIngredientToResponseData
 import com.jumrukovski.cocktailbar.data.model.Ingredient
 import com.jumrukovski.cocktailbar.data.repository.ApiRepository
 import kotlinx.coroutines.flow.flow

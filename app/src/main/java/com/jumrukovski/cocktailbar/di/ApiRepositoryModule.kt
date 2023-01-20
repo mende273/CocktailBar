@@ -1,7 +1,7 @@
-package com.jumrukovski.cocktailbar.injection
+package com.jumrukovski.cocktailbar.di
 
-import com.jumrukovski.cocktailbar.data.domain.*
 import com.jumrukovski.cocktailbar.data.repository.ApiRepository
+import com.jumrukovski.cocktailbar.domain.usecase.*
 import org.koin.dsl.module
 
 val apiRepositoryModule = module {

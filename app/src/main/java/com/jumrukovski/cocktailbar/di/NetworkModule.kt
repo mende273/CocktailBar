@@ -1,8 +1,8 @@
-package com.jumrukovski.cocktailbar.injection
+package com.jumrukovski.cocktailbar.di
 
 import android.content.Context
 import com.jumrukovski.cocktailbar.BuildConfig
-import com.jumrukovski.cocktailbar.network.ApiService
+import com.jumrukovski.cocktailbar.data.network.ApiService
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
