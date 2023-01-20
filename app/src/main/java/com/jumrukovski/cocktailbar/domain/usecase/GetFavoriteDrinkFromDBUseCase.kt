@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.data.domain
+package com.jumrukovski.cocktailbar.domain.usecase
 
 import com.jumrukovski.cocktailbar.data.repository.LocalRepository
 

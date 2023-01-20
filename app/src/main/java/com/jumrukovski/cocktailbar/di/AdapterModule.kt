@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.injection
+package com.jumrukovski.cocktailbar.di
 
 import com.jumrukovski.cocktailbar.ui.adapters.CocktailAdapter
 import com.jumrukovski.cocktailbar.ui.adapters.FilterAdapter

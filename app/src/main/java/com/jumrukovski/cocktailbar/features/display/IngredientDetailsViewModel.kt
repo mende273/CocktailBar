@@ -2,8 +2,8 @@ package com.jumrukovski.cocktailbar.features.display
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jumrukovski.cocktailbar.data.domain.SearchIngredientUseCase
-import com.jumrukovski.cocktailbar.data.domain.mappers.asIngredientUIState
+import com.jumrukovski.cocktailbar.domain.usecase.SearchIngredientUseCase
+import com.jumrukovski.cocktailbar.domain.mapper.asIngredientUIState
 
 class IngredientDetailsViewModel(private val searchIngredient: SearchIngredientUseCase) :
     ViewModel() {

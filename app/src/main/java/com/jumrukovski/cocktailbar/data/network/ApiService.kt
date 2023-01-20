@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.network
+package com.jumrukovski.cocktailbar.data.network
 
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.data.model.DrinksResponse

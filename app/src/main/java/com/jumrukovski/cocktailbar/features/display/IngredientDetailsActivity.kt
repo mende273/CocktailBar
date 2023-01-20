@@ -9,7 +9,7 @@ import com.jumrukovski.cocktailbar.base.BaseActivity
 import com.jumrukovski.cocktailbar.data.model.Ingredient
 import com.jumrukovski.cocktailbar.databinding.ActivityIngredientDetailsBinding
 import com.jumrukovski.cocktailbar.ui.state.UIState
-import com.jumrukovski.cocktailbar.network.ApiService
+import com.jumrukovski.cocktailbar.data.network.ApiService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

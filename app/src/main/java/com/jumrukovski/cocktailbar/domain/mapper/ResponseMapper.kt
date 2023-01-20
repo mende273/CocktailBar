@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.data.domain.mappers
+package com.jumrukovski.cocktailbar.domain.mapper
 
 import com.jumrukovski.cocktailbar.data.model.*
 import retrofit2.Response

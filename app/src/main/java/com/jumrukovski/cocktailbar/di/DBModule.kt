@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.injection
+package com.jumrukovski.cocktailbar.di
 
 import android.content.Context
 import androidx.room.Room

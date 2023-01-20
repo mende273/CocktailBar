@@ -1,6 +1,6 @@
 package com.jumrukovski.cocktailbar.data.repository
 
-import com.jumrukovski.cocktailbar.network.ApiService
+import com.jumrukovski.cocktailbar.data.network.ApiService
 
 class ApiRepository(private val apiService: ApiService) {
 
