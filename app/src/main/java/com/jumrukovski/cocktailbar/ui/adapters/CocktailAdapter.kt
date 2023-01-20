@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
-import coil.api.load
+import coil.load
 import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.base.BaseBindingViewHolder
 import com.jumrukovski.cocktailbar.data.model.Drink
