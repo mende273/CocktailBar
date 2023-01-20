@@ -3,7 +3,7 @@ package com.jumrukovski.cocktailbar.features.display
 import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.lifecycleScope
-import coil.api.load
+import coil.load
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.base.BaseActivity
 import com.jumrukovski.cocktailbar.data.model.Ingredient

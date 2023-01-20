@@ -8,7 +8,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.util.Pair
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import coil.api.load
+import coil.load
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.base.BaseActivity
 import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
