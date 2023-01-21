@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.features.display
+package com.jumrukovski.cocktailbar.ui.features.display
 
 import android.app.Activity
 import android.content.Intent
@@ -15,7 +15,6 @@ import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.ActivityDrinkDetailsBinding
 import com.jumrukovski.cocktailbar.ui.state.UIState
-import com.jumrukovski.cocktailbar.ui.adapters.IngredientsAdapter
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel

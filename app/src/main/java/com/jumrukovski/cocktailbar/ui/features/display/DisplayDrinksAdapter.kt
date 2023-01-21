@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.ui.adapters
+package com.jumrukovski.cocktailbar.ui.features.display
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,7 @@ import com.jumrukovski.cocktailbar.base.BaseBindingViewHolder
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.ItemDrinkBinding
 
-class CocktailAdapter : BaseBindingAdapter<Drink>() {
+class DisplayDrinksAdapter : BaseBindingAdapter<Drink>() {
 
     override fun bind(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): ViewDataBinding =
         ItemDrinkBinding.inflate(inflater, parent, false)

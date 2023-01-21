@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.features.home
+package com.jumrukovski.cocktailbar.ui.features.home
 
 import android.view.View
 import android.widget.AdapterView
@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import androidx.lifecycle.lifecycleScope
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.base.DisplayDrinksFragment
+import com.jumrukovski.cocktailbar.ui.features.display.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

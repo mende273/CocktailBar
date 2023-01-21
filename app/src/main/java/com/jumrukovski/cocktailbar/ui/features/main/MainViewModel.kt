@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.features.main
+package com.jumrukovski.cocktailbar.ui.features.main
 
 import androidx.lifecycle.ViewModel
 

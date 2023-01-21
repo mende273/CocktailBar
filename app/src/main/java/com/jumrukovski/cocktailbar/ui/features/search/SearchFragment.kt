@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.features.search
+package com.jumrukovski.cocktailbar.ui.features.search
 
 import android.content.Context
 import android.view.inputmethod.EditorInfo
@@ -6,7 +6,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
 import androidx.lifecycle.lifecycleScope
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.base.DisplayDrinksFragment
+import com.jumrukovski.cocktailbar.ui.features.display.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.databinding.FragmentSearchBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
