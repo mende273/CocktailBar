@@ -3,6 +3,7 @@ package com.jumrukovski.cocktailbar.di
 import android.content.Context
 import com.jumrukovski.cocktailbar.BuildConfig
 import com.jumrukovski.cocktailbar.data.network.ApiService
+import com.jumrukovski.cocktailbar.data.network.NoConnectionInterceptor
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,8 +15,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 val networkModule = module {
     single { provideService(get()) }
     single { provideRetrofit(get()) }
-    single { provideOkHttpClient(get(), get()) }
+    single { provideOkHttpClient(get(), get(),get()) }
     single { provideHttpLoggingInterceptor() }
+    single { provideNoConnectionInterceptor() }
     single { provideHttpCache(androidContext()) }
 }
 
@@ -34,10 +36,12 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
 
 fun provideOkHttpClient(
     httpLoggingInterceptor: HttpLoggingInterceptor,
-    cache: Cache
+    cache: Cache,
+    noConnectionInterceptor: NoConnectionInterceptor
 ): OkHttpClient {
     val builder = OkHttpClient.Builder()
         .addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(noConnectionInterceptor)
         .cache(cache)
     return builder.build()
 }
@@ -55,3 +59,5 @@ fun provideHttpCache(context: Context): Cache {
     val cacheSize = 10 * 1024 * 1024
     return Cache(context.cacheDir, cacheSize.toLong())
 }
+
+fun provideNoConnectionInterceptor(): NoConnectionInterceptor = NoConnectionInterceptor()
