@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.jumrukovski.cocktailbar.features.main.MainActivity"
+            android:name="com.jumrukovski.cocktailbar.ui.features.main.MainActivity"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
@@ -24,14 +24,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.jumrukovski.cocktailbar.features.filter.FilteredDrinksActivity"
+            android:name="com.jumrukovski.cocktailbar.ui.features.filter.FilteredDrinksActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.jumrukovski.cocktailbar.features.display.DrinkDetailsActivity"
+            android:name="com.jumrukovski.cocktailbar.ui.features.display.DrinkDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/DetailsTheme" />
         <activity
-            android:name="com.jumrukovski.cocktailbar.features.display.IngredientDetailsActivity"
+            android:name="com.jumrukovski.cocktailbar.ui.features.display.IngredientDetailsActivity"
             android:screenOrientation="portrait" />
     </application>
 

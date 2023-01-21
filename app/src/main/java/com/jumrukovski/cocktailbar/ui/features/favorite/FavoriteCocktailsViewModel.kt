@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.features.favorite
+package com.jumrukovski.cocktailbar.ui.features.favorite
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

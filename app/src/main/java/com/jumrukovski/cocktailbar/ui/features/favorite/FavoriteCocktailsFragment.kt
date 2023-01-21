@@ -1,8 +1,8 @@
-package com.jumrukovski.cocktailbar.features.favorite
+package com.jumrukovski.cocktailbar.ui.features.favorite
 
 import android.widget.ProgressBar
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.base.DisplayDrinksFragment
+import com.jumrukovski.cocktailbar.ui.features.display.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.databinding.FragmentFavoriteBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

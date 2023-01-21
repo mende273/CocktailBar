@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.base
+package com.jumrukovski.cocktailbar.ui.features.display
 
 import android.view.View
 import android.widget.ProgressBar
@@ -8,10 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
+import com.jumrukovski.cocktailbar.base.BaseFragment
 import com.jumrukovski.cocktailbar.data.model.Drink
-import com.jumrukovski.cocktailbar.features.display.DrinkDetailsActivity
 import com.jumrukovski.cocktailbar.ui.state.UIState
-import com.jumrukovski.cocktailbar.ui.adapters.CocktailAdapter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
@@ -19,7 +19,7 @@ import org.koin.android.ext.android.inject
 abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
     BaseFragment<DB, VM>() {
 
-    private val adapter: CocktailAdapter by inject()
+    private val adapter: DisplayDrinksAdapter by inject()
 
     private val itemClickListener = object : BaseBindingAdapter.ItemClickListener<Drink> {
         override fun onClick(item: Drink, position: Int, sharedViews: Array<View>) {

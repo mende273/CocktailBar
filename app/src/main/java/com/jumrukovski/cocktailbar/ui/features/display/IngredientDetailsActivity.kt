@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.features.display
+package com.jumrukovski.cocktailbar.ui.features.display
 
 import android.content.Context
 import android.content.Intent

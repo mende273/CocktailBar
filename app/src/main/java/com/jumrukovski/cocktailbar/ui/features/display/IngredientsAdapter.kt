@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.ui.adapters
+package com.jumrukovski.cocktailbar.ui.features.display
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

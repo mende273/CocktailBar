@@ -1,12 +1,12 @@
 package com.jumrukovski.cocktailbar.di
 
-import com.jumrukovski.cocktailbar.ui.adapters.CocktailAdapter
-import com.jumrukovski.cocktailbar.ui.adapters.FilterAdapter
-import com.jumrukovski.cocktailbar.ui.adapters.IngredientsAdapter
+import com.jumrukovski.cocktailbar.ui.features.display.DisplayDrinksAdapter
+import com.jumrukovski.cocktailbar.ui.features.filter.FilterAdapter
+import com.jumrukovski.cocktailbar.ui.features.display.IngredientsAdapter
 import org.koin.dsl.module
 
 val adapterModule = module {
-    factory { CocktailAdapter() }
+    factory { DisplayDrinksAdapter() }
     single { FilterAdapter() }
     single { IngredientsAdapter() }
 }

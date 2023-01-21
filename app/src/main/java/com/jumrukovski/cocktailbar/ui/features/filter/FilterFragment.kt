@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.features.filter
+package com.jumrukovski.cocktailbar.ui.features.filter
 
 import android.view.View
 import android.widget.AdapterView
@@ -12,7 +12,6 @@ import com.jumrukovski.cocktailbar.base.BaseFragment
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.FragmentFilterBinding
 import com.jumrukovski.cocktailbar.ui.state.UIState
-import com.jumrukovski.cocktailbar.ui.adapters.FilterAdapter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject

@@ -1,10 +1,10 @@
-package com.jumrukovski.cocktailbar.features.filter
+package com.jumrukovski.cocktailbar.ui.features.filter
 
 import android.os.Bundle
 import android.widget.ProgressBar
 import androidx.lifecycle.lifecycleScope
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.base.DisplayDrinksFragment
+import com.jumrukovski.cocktailbar.ui.features.display.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.data.model.Filter
 import com.jumrukovski.cocktailbar.databinding.FragmentFilteredDrinksBinding
 import kotlinx.coroutines.launch

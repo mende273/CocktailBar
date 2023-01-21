@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.features.search
+package com.jumrukovski.cocktailbar.ui.features.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

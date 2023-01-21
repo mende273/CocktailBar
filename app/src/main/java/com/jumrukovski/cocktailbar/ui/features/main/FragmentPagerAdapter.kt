@@ -1,11 +1,11 @@
-package com.jumrukovski.cocktailbar.ui.adapters
+package com.jumrukovski.cocktailbar.ui.features.main
 
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.jumrukovski.cocktailbar.features.favorite.FavoriteCocktailsFragment
-import com.jumrukovski.cocktailbar.features.filter.FilterFragment
-import com.jumrukovski.cocktailbar.features.home.HomeFragment
-import com.jumrukovski.cocktailbar.features.search.SearchFragment
+import com.jumrukovski.cocktailbar.ui.features.favorite.FavoriteCocktailsFragment
+import com.jumrukovski.cocktailbar.ui.features.filter.FilterFragment
+import com.jumrukovski.cocktailbar.ui.features.home.HomeFragment
+import com.jumrukovski.cocktailbar.ui.features.search.SearchFragment
 
 class FragmentPagerAdapter(fragmentActivity: FragmentActivity) :
     FragmentStateAdapter(fragmentActivity) {
