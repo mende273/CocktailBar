@@ -17,14 +17,7 @@ fun Flow<ResponseResult<Ingredient>>.mapAsIngredientUIState(scope: CoroutineScop
             is ResponseResult.Error -> UIState.Error(response.code)
             is ResponseResult.Exception -> UIState.Exception(response.exception)
         }
-    }.onStart { UIState.Loading(true) }
-        .onCompletion { UIState.Loading(false) }
-        .catch { emit(UIState.Exception(it)) }
-        .stateIn(
-            scope = scope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = UIState.Loading(false)
-        )
+    }.asResult(scope)
 }
 
 fun Flow<ResponseResult<List<Drink>>>.mapAsDrinksUIState(scope: CoroutineScope): StateFlow<UIState<List<Drink>>> {
@@ -39,15 +32,7 @@ fun Flow<ResponseResult<List<Drink>>>.mapAsDrinksUIState(scope: CoroutineScope):
             is ResponseResult.Error -> UIState.Error(response.code)
             is ResponseResult.Exception -> UIState.Error(-1)
         }
-    }
-        .onStart { UIState.Loading(true) }
-        .onCompletion { UIState.Loading(false) }
-        .catch { emit(UIState.Exception(it)) }
-        .stateIn(
-            scope = scope,
-            started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = UIState.Loading(false)
-        )
+    }.asResult(scope)
 }
 
 fun Flow<ResponseResult<Drink>>.mapAsDrinkUIState(scope: CoroutineScope): StateFlow<UIState<Drink>> {
@@ -61,7 +46,12 @@ fun Flow<ResponseResult<Drink>>.mapAsDrinkUIState(scope: CoroutineScope): StateF
             is ResponseResult.Error -> UIState.Error(response.code)
             is ResponseResult.Exception -> UIState.Error(-1)
         }
-    }.onStart { UIState.Loading(true) }
+    }.asResult(scope)
+}
+
+private fun <T> Flow<UIState<T>>.asResult(scope: CoroutineScope): StateFlow<UIState<T>> {
+    return this
+        .onStart { emit(UIState.Loading(true)) }
         .onCompletion { UIState.Loading(false) }
         .catch { emit(UIState.Exception(it)) }
         .stateIn(
