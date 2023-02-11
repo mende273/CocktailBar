@@ -51,12 +51,13 @@ class DrinkDetailsActivity :
 
     private fun collectFullDetailsData() {
         lifecycleScope.launch {
-            viewModel.getDrinkDetails().collect { uiState ->
+            viewModel.getDrinkDetails()?.collect { uiState ->
                 when (uiState) {
                     is UIState.Success -> uiState.data?.let { showData(it) }
                     is UIState.Error -> showErrorMessage("Something went wrong")
                     is UIState.Loading -> ""//todo
                     is UIState.NoData -> ""//todo
+                    is UIState.Exception -> "" //todo
                 }
             }
         }
