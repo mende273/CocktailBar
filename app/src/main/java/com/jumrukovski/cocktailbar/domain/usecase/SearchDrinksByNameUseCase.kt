@@ -1,17 +1,12 @@
 package com.jumrukovski.cocktailbar.domain.usecase
 
-import com.jumrukovski.cocktailbar.base.BaseUseCase
-import com.jumrukovski.cocktailbar.domain.mapper.mapDrinksToResponseData
-import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.data.repository.ApiRepository
+import com.jumrukovski.cocktailbar.domain.mapper.mapDrinksToResponseResult
 import kotlinx.coroutines.flow.flow
 
-class SearchDrinksByNameUseCase(private val apiRepository: ApiRepository) :
-    BaseUseCase<List<Drink>>() {
+class SearchDrinksByNameUseCase(private val apiRepository: ApiRepository) {
 
-    override fun invoke(vararg values: String) = flow {
-        val response = apiRepository.searchDrinksByName(values[0])
-
-        emit(response.mapDrinksToResponseData())
+    fun invoke(name: String) = flow {
+        emit(apiRepository.searchDrinksByName(name).mapDrinksToResponseResult())
     }
 }

@@ -1,28 +1,38 @@
 package com.jumrukovski.cocktailbar.domain.mapper
 
 import com.jumrukovski.cocktailbar.data.model.*
+import com.jumrukovski.cocktailbar.data.network.ResponseResult
 import retrofit2.Response
 
-fun Response<DrinksResponse<Drink>>.mapDrinksToResponseData(): ResponseData<List<Drink>> {
-    return ResponseData(
-        this.body()?.drinks ?: listOf(),
-        this.isSuccessful,
-        this.code()
-    )
+fun Response<DrinksResponse<Drink>>.mapDrinksToResponseResult(): ResponseResult<List<Drink>> {
+    return try {
+        return when (this.isSuccessful) {
+            true -> ResponseResult.Success(this.body()?.drinks ?: emptyList())
+            false -> ResponseResult.Error(this.errorBody(), this.code())
+        }
+    } catch (throwable: Throwable) {
+        ResponseResult.Exception(throwable)
+    }
 }
 
-fun Response<DrinksResponse<Drink>>.mapDrinkToResponseData(): ResponseData<Drink> {
-    return ResponseData(
-        this.body()?.drinks?.get(0),
-        this.isSuccessful,
-        this.code()
-    )
+fun Response<DrinksResponse<Drink>>.mapDrinkToResponseResult(): ResponseResult<Drink> {
+    return try {
+        return when (this.isSuccessful) {
+            true -> ResponseResult.Success(this.body()?.drinks?.get(0))
+            false -> ResponseResult.Error(this.errorBody(), this.code())
+        }
+    } catch (throwable: Throwable) {
+        ResponseResult.Exception(throwable)
+    }
 }
 
-fun Response<IngredientsResponse<Ingredient>>.mapIngredientToResponseData(): ResponseData<Ingredient>{
-    return ResponseData(
-        this.body()?.ingredients?.get(0),
-        this.isSuccessful,
-        this.code()
-    )
+fun Response<IngredientsResponse<Ingredient>>.mapIngredientToResponseResult(): ResponseResult<Ingredient> {
+    return try {
+        return when (this.isSuccessful) {
+            true -> ResponseResult.Success(this.body()?.ingredients?.get(0))
+            false -> ResponseResult.Error(this.errorBody(), this.code())
+        }
+    } catch (throwable: Throwable) {
+        ResponseResult.Exception(throwable)
+    }
 }
