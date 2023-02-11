@@ -59,9 +59,13 @@ abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
                 showProgress(getProgressView(), false)
                 //todo showErrorMessage(uiState.code)
             }
-            UIState.NoData -> {
+            is UIState.NoData -> {
                 showProgress(getProgressView(), false)
                 // todo show empty view
+            }
+            is UIState.Exception -> {
+                showProgress(getProgressView(), false)
+                //todo exception
             }
         }
     }

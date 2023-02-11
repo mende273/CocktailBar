@@ -36,6 +36,7 @@ class IngredientDetailsActivity :
                             //todo showErrorMessage(uiState.code)
                         }
                         is UIState.NoData -> "" //todo
+                        is UIState.Exception -> ""//todo
                     }
                 }
             }
