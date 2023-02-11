@@ -23,13 +23,3 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-ext {
-    livecycleVersion = "2.2.0"
-    retrofit2Version = "2.9.0"
-    coroutinesVersion = "1.2.1"
-    okhttp3Version = "4.10.0"
-    koinVersion = "2.2.1"
-    coilVersion = "2.2.2"
-    roomVersion = "2.5.0"
-}
