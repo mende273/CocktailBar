@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.domain.mapper
+package com.jumrukovski.cocktailbar.ui.mapper
 
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.data.model.Ingredient

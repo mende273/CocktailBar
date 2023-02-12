@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jumrukovski.cocktailbar.domain.usecase.GetCocktailsByFirstLetterUseCase
 import com.jumrukovski.cocktailbar.data.model.Drink
-import com.jumrukovski.cocktailbar.domain.mapper.mapAsDrinksUIState
+import com.jumrukovski.cocktailbar.ui.mapper.mapAsDrinksUIState
 import com.jumrukovski.cocktailbar.ui.state.UIState
 import kotlinx.coroutines.flow.Flow
 

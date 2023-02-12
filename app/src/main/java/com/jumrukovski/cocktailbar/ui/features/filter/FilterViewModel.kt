@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jumrukovski.cocktailbar.domain.usecase.GetFilterListUseCase
 import com.jumrukovski.cocktailbar.data.model.Filter
-import com.jumrukovski.cocktailbar.domain.mapper.mapAsDrinksUIState
+import com.jumrukovski.cocktailbar.ui.mapper.mapAsDrinksUIState
 
 class FilterViewModel(private val getFilterList: GetFilterListUseCase) : ViewModel() {
 
