@@ -23,19 +23,15 @@ class IngredientDetailsActivity :
                 with(binding) {
                     when (uiState) {
                         is UIState.Loading -> showProgress(progress, uiState.isLoading)
-                        is UIState.Success -> {
-                            showProgress(progress, false)
-                            uiState.data?.let { data ->
-                                type.text = String.format(resources.getString(R.string.type), data.strType)
-                                alcohol.text = String.format(resources.getString(R.string.alcohol), data.strAlcohol)
-                                description.text = data.strDescription
-                            }
+                        is UIState.SuccessWithData -> {
+                            type.text = String.format(resources.getString(R.string.type), uiState.data.strType)
+                            alcohol.text = String.format(resources.getString(R.string.alcohol), uiState.data.strAlcohol)
+                            description.text = uiState.data.strDescription
                         }
                         is UIState.Error -> {
-                            showProgress(progress, false)
                             //todo showErrorMessage(uiState.code)
                         }
-                        is UIState.NoData -> "" //todo
+                        is UIState.SuccessWithNoData -> "" //todo
                         is UIState.Exception -> ""//todo
                     }
                 }

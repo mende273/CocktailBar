@@ -12,8 +12,8 @@ fun Flow<ResponseResult<Ingredient>>.mapAsIngredientUIState(scope: CoroutineScop
         when (response) {
             is ResponseResult.Success ->
                 response.data?.let {
-                    UIState.Success(it)
-                } ?: UIState.NoData
+                    UIState.SuccessWithData(it)
+                } ?: UIState.SuccessWithNoData
             is ResponseResult.Error -> UIState.Error(response.code)
             is ResponseResult.Exception -> UIState.Exception(response.exception)
         }
@@ -24,13 +24,12 @@ fun Flow<ResponseResult<List<Drink>>>.mapAsDrinksUIState(scope: CoroutineScope):
     return this.map { response ->
         when (response) {
             is ResponseResult.Success ->
-                if (response.data.isNullOrEmpty()) {
-                    UIState.NoData
-                } else {
-                    UIState.Success(response.data)
+                when(response.data.isNullOrEmpty()){
+                    true -> UIState.SuccessWithNoData
+                    false -> UIState.SuccessWithData(response.data)
                 }
             is ResponseResult.Error -> UIState.Error(response.code)
-            is ResponseResult.Exception -> UIState.Error(-1)
+            is ResponseResult.Exception -> UIState.Exception(response.exception)
         }
     }.asResult(scope)
 }
@@ -40,19 +39,19 @@ fun Flow<ResponseResult<Drink>>.mapAsDrinkUIState(scope: CoroutineScope): StateF
         when (response) {
             is ResponseResult.Success -> {
                 response.data?.let {
-                    UIState.Success(it)
-                } ?: UIState.NoData
+                    UIState.SuccessWithData(it)
+                } ?: UIState.SuccessWithNoData
             }
             is ResponseResult.Error -> UIState.Error(response.code)
-            is ResponseResult.Exception -> UIState.Error(-1)
+            is ResponseResult.Exception -> UIState.Exception(response.exception)
         }
     }.asResult(scope)
 }
 
 private fun <T> Flow<UIState<T>>.asResult(scope: CoroutineScope): StateFlow<UIState<T>> {
     return this
-        .onStart { emit(UIState.Loading(true)) }
-        .onCompletion { UIState.Loading(false) }
+        .onStart {emit(UIState.Loading(true)) }
+        .onCompletion {emit(UIState.Loading(false))}
         .catch { emit(UIState.Exception(it)) }
         .stateIn(
             scope = scope,

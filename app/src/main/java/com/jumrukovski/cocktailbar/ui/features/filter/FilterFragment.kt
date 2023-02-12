@@ -43,20 +43,20 @@ class FilterFragment :
     }
 
     private fun collectData(data: Flow<UIState<List<Drink>>>) {
-        filterAdapter.clear()
         lifecycleScope.launch {
             data.collect { uiState ->
                 when (uiState) {
                     is UIState.Loading -> showProgress(binding.progress, uiState.isLoading)
-                    is UIState.Success -> {
-                        showProgress(binding.progress, false)
-                        filterAdapter.apply { uiState.data?.let { addItems(it) } }
+                    is UIState.SuccessWithData -> {
+                       filterAdapter.apply {
+                           clear()
+                           addItems(uiState.data)
+                       }
                     }
                     is UIState.Error -> {
-                        showProgress(binding.progress, false)
                         // todo showErrorMessage(uiState.code)
                     }
-                    is UIState.NoData -> "" // todo
+                    is UIState.SuccessWithNoData -> filterAdapter.clear()
                     is UIState.Exception -> ""//todo
                 }
             }

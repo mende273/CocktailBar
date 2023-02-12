@@ -48,23 +48,19 @@ abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
     }
 
     private fun displayData(uiState: UIState<List<Drink>>) {
-        adapter.clear()
         when (uiState) {
             is UIState.Loading -> showProgress(getProgressView(), uiState.isLoading)
-            is UIState.Success -> {
-                showProgress(getProgressView(), false)
-                uiState.data?.let { adapter.addItems(it) }
+            is UIState.SuccessWithData -> {
+               adapter.apply {
+                   clear()
+                   addItems(uiState.data)
+               }
             }
             is UIState.Error -> {
-                showProgress(getProgressView(), false)
                 //todo showErrorMessage(uiState.code)
             }
-            is UIState.NoData -> {
-                showProgress(getProgressView(), false)
-                // todo show empty view
-            }
+            is UIState.SuccessWithNoData -> { adapter.clear() }
             is UIState.Exception -> {
-                showProgress(getProgressView(), false)
                 //todo exception
             }
         }
