@@ -6,7 +6,7 @@ import com.jumrukovski.cocktailbar.domain.usecase.AddFavoriteDrinkInDBUseCase
 import com.jumrukovski.cocktailbar.domain.usecase.GetDrinkDetailsUseCase
 import com.jumrukovski.cocktailbar.domain.usecase.GetFavoriteDrinkFromDBUseCase
 import com.jumrukovski.cocktailbar.domain.usecase.RemoveFavoriteDrinkFromDBUseCase
-import com.jumrukovski.cocktailbar.domain.mapper.mapAsDrinkUIState
+import com.jumrukovski.cocktailbar.ui.mapper.mapAsDrinkUIState
 import com.jumrukovski.cocktailbar.data.model.Drink
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
