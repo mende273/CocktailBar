@@ -17,7 +17,7 @@ interface ApiService {
     }
 
     @GET("search.php")
-    suspend fun getCocktailsByFirstLetter(@Query("f") firstLetter: String): Response<DrinksResponse<Drink>>
+    suspend fun getCocktailsByFirstLetterAsync(@Query("f") firstLetter: String): Response<DrinksResponse<Drink>>
 
     @GET("list.php")
     suspend fun getFilterListFor(@QueryMap options: Map<String, String>): Response<DrinksResponse<Drink>>

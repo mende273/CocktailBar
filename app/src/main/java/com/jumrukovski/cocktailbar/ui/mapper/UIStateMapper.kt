@@ -34,6 +34,20 @@ fun Flow<ResponseResult<List<Drink>>>.mapAsDrinksUIState(scope: CoroutineScope):
     }.asResult(scope)
 }
 
+fun ResponseResult<List<Drink>>.mapResponseResultToDrinksUIState(): UIState<List<Drink>> {
+    val uiState = when(this){
+        is ResponseResult.Success ->
+            when(this.data.isNullOrEmpty()){
+                true -> UIState.SuccessWithNoData
+                false -> UIState.SuccessWithData(this.data)
+            }
+        is ResponseResult.Error -> UIState.Error(this.code)
+        is ResponseResult.Exception -> UIState.Exception(this.exception)
+    }
+
+    return uiState
+}
+
 fun Flow<ResponseResult<Drink>>.mapAsDrinkUIState(scope: CoroutineScope): StateFlow<UIState<Drink>> {
     return this.map { response ->
         when (response) {
@@ -58,4 +72,11 @@ private fun <T> Flow<UIState<T>>.asResult(scope: CoroutineScope): StateFlow<UISt
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = UIState.Loading(false)
         )
+}
+
+suspend fun <T> Flow<UIState<T>>.asFlowWithResult(): Flow<UIState<T>>{
+    return this
+        .onStart {emit(UIState.Loading(true)) }
+        .onCompletion {emit(UIState.Loading(false))}
+        .catch { emit(UIState.Exception(it)) }
 }
