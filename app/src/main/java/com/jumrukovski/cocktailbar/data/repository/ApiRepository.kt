@@ -4,8 +4,8 @@ import com.jumrukovski.cocktailbar.data.network.ApiService
 
 class ApiRepository(private val apiService: ApiService) {
 
-    suspend fun getCocktailsByFirstLetter(firstLetter: String) =
-        apiService.getCocktailsByFirstLetter(firstLetter)
+    suspend fun getCocktailsByFirstLetterAsync(firstLetter: String) =
+        apiService.getCocktailsByFirstLetterAsync(firstLetter)
 
     suspend fun searchDrinksByName(name: String) = apiService.searchDrinksByName(name)
 
