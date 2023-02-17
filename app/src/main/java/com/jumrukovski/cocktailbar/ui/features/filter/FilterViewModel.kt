@@ -1,10 +1,11 @@
 package com.jumrukovski.cocktailbar.ui.features.filter
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.jumrukovski.cocktailbar.domain.usecase.GetFilterListUseCase
 import com.jumrukovski.cocktailbar.data.model.Filter
-import com.jumrukovski.cocktailbar.ui.mapper.mapAsDrinksUIState
+import com.jumrukovski.cocktailbar.domain.usecase.GetFilterListUseCase
+import com.jumrukovski.cocktailbar.ui.mapper.asFlowWithResult
+import com.jumrukovski.cocktailbar.ui.mapper.mapResponseResultToDrinksUIState
+import kotlinx.coroutines.flow.flow
 
 class FilterViewModel(private val getFilterList: GetFilterListUseCase) : ViewModel() {
 
@@ -27,7 +28,9 @@ class FilterViewModel(private val getFilterList: GetFilterListUseCase) : ViewMod
         }
     }
 
-    fun fetchData() = getFilterList.invoke(currentFilter.param, "list").mapAsDrinksUIState(viewModelScope)
+    suspend fun fetchData() = flow {
+        emit(getFilterList.invoke(currentFilter.param, "list").mapResponseResultToDrinksUIState())
+    }.asFlowWithResult()
 
     fun createFilter(value: String): Filter {
         return Filter(currentFilter.title, currentFilter.param, value)
