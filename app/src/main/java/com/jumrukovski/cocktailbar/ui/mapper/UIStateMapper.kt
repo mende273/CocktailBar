@@ -34,18 +34,14 @@ fun ResponseResult<List<Drink>>.mapResponseResultToDrinksUIState(): UIState<List
     return uiState
 }
 
-fun Flow<ResponseResult<Drink>>.mapAsDrinkUIState(scope: CoroutineScope): StateFlow<UIState<Drink>> {
-    return this.map { response ->
-        when (response) {
-            is ResponseResult.Success -> {
-                response.data?.let {
-                    UIState.SuccessWithData(it)
-                } ?: UIState.SuccessWithNoData
-            }
-            is ResponseResult.Error -> UIState.Error(response.code)
-            is ResponseResult.Exception -> UIState.Exception(response.exception)
-        }
-    }.asResult(scope)
+fun ResponseResult<Drink>.mapResponseResultToDrinkUIState(): UIState<Drink> {
+    return when(this){
+        is ResponseResult.Error -> UIState.Error(this.code)
+        is ResponseResult.Exception -> UIState.Exception(this.exception)
+        is ResponseResult.Success -> this.data?.let {
+            UIState.SuccessWithData(it)
+        } ?: UIState.SuccessWithNoData
+    }
 }
 
 private fun <T> Flow<UIState<T>>.asResult(scope: CoroutineScope): StateFlow<UIState<T>> {
