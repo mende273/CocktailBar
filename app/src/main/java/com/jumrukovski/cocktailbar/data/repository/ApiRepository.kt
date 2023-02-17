@@ -7,7 +7,7 @@ class ApiRepository(private val apiService: ApiService) {
     suspend fun getCocktailsByFirstLetterAsync(firstLetter: String) =
         apiService.getCocktailsByFirstLetterAsync(firstLetter)
 
-    suspend fun searchDrinksByName(name: String) = apiService.searchDrinksByName(name)
+    suspend fun searchDrinksByNameAsync(name: String) = apiService.searchDrinksByNameAsync(name)
 
     suspend fun getFilterListFor(param: String, value: String) =
         apiService.getFilterListFor(mapOf(param to value))

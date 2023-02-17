@@ -23,7 +23,7 @@ interface ApiService {
     suspend fun getFilterListFor(@QueryMap options: Map<String, String>): Response<DrinksResponse<Drink>>
 
     @GET("search.php")
-    suspend fun searchDrinksByName(@Query("s") name: String): Response<DrinksResponse<Drink>>
+    suspend fun searchDrinksByNameAsync(@Query("s") name: String): Response<DrinksResponse<Drink>>
 
     @GET("filter.php")
     suspend fun getFilteredDrinks(@QueryMap options: Map<String, String>): Response<DrinksResponse<Drink>>
