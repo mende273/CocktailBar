@@ -1,12 +1,15 @@
 package com.jumrukovski.cocktailbar.ui.features.display
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.jumrukovski.cocktailbar.ui.mapper.mapAsIngredientUIState
 import com.jumrukovski.cocktailbar.domain.usecase.SearchIngredientUseCase
+import com.jumrukovski.cocktailbar.ui.mapper.asFlowWithResult
+import com.jumrukovski.cocktailbar.ui.mapper.mapResponseResultToIngredientUIState
+import kotlinx.coroutines.flow.flow
 
 class IngredientDetailsViewModel(private val searchIngredient: SearchIngredientUseCase) :
     ViewModel() {
 
-    fun fetchData(name: String) = searchIngredient.invoke(name).mapAsIngredientUIState(viewModelScope)
+    suspend fun fetchData(name: String) = flow {
+        emit(searchIngredient.invoke(name).mapResponseResultToIngredientUIState())
+    }.asFlowWithResult()
 }

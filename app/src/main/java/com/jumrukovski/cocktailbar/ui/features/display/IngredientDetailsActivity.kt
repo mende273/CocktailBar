@@ -43,7 +43,10 @@ class IngredientDetailsActivity :
         val name = intent.getStringExtra(EXTRA_INGREDIENT_NAME) ?: ""
         initToolbar(binding.toolbar.toolbar, name)
         loadThumbnail(name)
-        collectData(viewModel.fetchData(name))
+
+        lifecycleScope.launch {
+            collectData(viewModel.fetchData(name))
+        }
     }
 
     private fun loadThumbnail(name: String) {

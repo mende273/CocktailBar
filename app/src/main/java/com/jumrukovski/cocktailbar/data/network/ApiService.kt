@@ -32,5 +32,5 @@ interface ApiService {
     suspend fun getDrinkDetailsAsync(@Query("i") id: Long): Response<DrinksResponse<Drink>>
 
     @GET("search.php")
-    suspend fun searchIngredient(@Query("i") name: String): Response<IngredientsResponse<Ingredient>>
+    suspend fun searchIngredientAsync(@Query("i") name: String): Response<IngredientsResponse<Ingredient>>
 }

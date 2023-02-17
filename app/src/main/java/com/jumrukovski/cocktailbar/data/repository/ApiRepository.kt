@@ -17,5 +17,5 @@ class ApiRepository(private val apiService: ApiService) {
 
     suspend fun getDrinkDetailsAsync(id: Long) = apiService.getDrinkDetailsAsync(id)
 
-    suspend fun searchIngredient(name: String) = apiService.searchIngredient(name)
+    suspend fun searchIngredientAsync(name: String) = apiService.searchIngredientAsync(name)
 }
