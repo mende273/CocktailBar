@@ -20,7 +20,7 @@ interface ApiService {
     suspend fun getCocktailsByFirstLetterAsync(@Query("f") firstLetter: String): Response<DrinksResponse<Drink>>
 
     @GET("list.php")
-    suspend fun getFilterListFor(@QueryMap options: Map<String, String>): Response<DrinksResponse<Drink>>
+    suspend fun getFilterListForOptionAsync(@QueryMap options: Map<String, String>): Response<DrinksResponse<Drink>>
 
     @GET("search.php")
     suspend fun searchDrinksByNameAsync(@Query("s") name: String): Response<DrinksResponse<Drink>>
