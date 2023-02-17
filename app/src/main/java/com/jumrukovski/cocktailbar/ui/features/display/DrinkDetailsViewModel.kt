@@ -2,13 +2,15 @@ package com.jumrukovski.cocktailbar.ui.features.display
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.domain.usecase.AddFavoriteDrinkInDBUseCase
 import com.jumrukovski.cocktailbar.domain.usecase.GetDrinkDetailsUseCase
 import com.jumrukovski.cocktailbar.domain.usecase.GetFavoriteDrinkFromDBUseCase
 import com.jumrukovski.cocktailbar.domain.usecase.RemoveFavoriteDrinkFromDBUseCase
-import com.jumrukovski.cocktailbar.ui.mapper.mapAsDrinkUIState
-import com.jumrukovski.cocktailbar.data.model.Drink
+import com.jumrukovski.cocktailbar.ui.mapper.asFlowWithResult
+import com.jumrukovski.cocktailbar.ui.mapper.mapResponseResultToDrinkUIState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
@@ -26,7 +28,7 @@ class DrinkDetailsViewModel(
         this.drink = drink
     }
 
-    fun getDrinkDetails() = drink.idDrink?.let { getDrinkDetails.invoke(it).mapAsDrinkUIState(viewModelScope) }
+    suspend fun getDrinkDetails() = drink.idDrink?.let { flow { emit(getDrinkDetails.invoke(it).mapResponseResultToDrinkUIState()) }.asFlowWithResult() }
 
     fun getFavoriteDrinkFromDB() =
         getFavoriteDrink.getFavoriteDrink(drink.idDrink!!).flowOn(Dispatchers.IO)
