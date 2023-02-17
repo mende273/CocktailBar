@@ -20,20 +20,6 @@ fun Flow<ResponseResult<Ingredient>>.mapAsIngredientUIState(scope: CoroutineScop
     }.asResult(scope)
 }
 
-fun Flow<ResponseResult<List<Drink>>>.mapAsDrinksUIState(scope: CoroutineScope): StateFlow<UIState<List<Drink>>> {
-    return this.map { response ->
-        when (response) {
-            is ResponseResult.Success ->
-                when(response.data.isNullOrEmpty()){
-                    true -> UIState.SuccessWithNoData
-                    false -> UIState.SuccessWithData(response.data)
-                }
-            is ResponseResult.Error -> UIState.Error(response.code)
-            is ResponseResult.Exception -> UIState.Exception(response.exception)
-        }
-    }.asResult(scope)
-}
-
 fun ResponseResult<List<Drink>>.mapResponseResultToDrinksUIState(): UIState<List<Drink>> {
     val uiState = when(this){
         is ResponseResult.Success ->

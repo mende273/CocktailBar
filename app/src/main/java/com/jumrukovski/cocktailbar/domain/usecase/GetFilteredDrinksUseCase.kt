@@ -2,11 +2,12 @@ package com.jumrukovski.cocktailbar.domain.usecase
 
 import com.jumrukovski.cocktailbar.data.repository.ApiRepository
 import com.jumrukovski.cocktailbar.domain.mapper.mapDrinksToResponseResult
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class GetFilteredDrinksUseCase(private val apiRepository: ApiRepository) {
 
-    fun invoke(param: String, value: String) = flow {
-        emit(apiRepository.getFilteredDrinks(param, value).mapDrinksToResponseResult())
+    suspend fun invoke(param: String, value: String) = withContext(Dispatchers.IO){
+        return@withContext apiRepository.getFilteredDrinksAsync(param, value).mapDrinksToResponseResult()
     }
 }
