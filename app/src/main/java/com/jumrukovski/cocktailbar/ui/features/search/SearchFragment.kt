@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.ui.features.display.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.databinding.FragmentSearchBinding
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -17,6 +18,15 @@ class SearchFragment :
     override fun init() {
         initItemsAdapter(binding.items)
         setListeners()
+        setObservers()
+    }
+
+    private fun setObservers(){
+        lifecycleScope.launch {
+            viewModel.uiState.collectLatest {
+                displayData(it)
+            }
+        }
     }
 
     private fun setListeners() {
@@ -42,9 +52,7 @@ class SearchFragment :
             return
         }
 
-        lifecycleScope.launch {
-            collectData(viewModel.fetchData(text))
-        }
+        viewModel.requestData(text)
     }
 
     override fun getLayoutRes() = R.layout.fragment_search
