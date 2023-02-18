@@ -57,7 +57,7 @@ abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
                }
             }
             is UIState.Error -> "" // todo
-            is UIState.SuccessWithNoData -> "" //todo
+            is UIState.SuccessWithNoData -> adapter.clear()
             is UIState.Exception -> "" //todo
         }
     }
