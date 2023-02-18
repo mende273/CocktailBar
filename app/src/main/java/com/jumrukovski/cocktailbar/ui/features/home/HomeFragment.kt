@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.ui.features.display.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.databinding.FragmentHomeBinding
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,9 +22,7 @@ class HomeFragment :
         }
 
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            lifecycleScope.launch {
-                collectData(viewModel.fetchItems(position))
-            }
+            viewModel.requestData(position)
         }
     }
 
@@ -31,6 +30,15 @@ class HomeFragment :
         initFilterAdapter()
         initItemsAdapter(binding.items)
         setListeners()
+        setObservers()
+    }
+
+    private fun setObservers(){
+        lifecycleScope.launch {
+            viewModel.uiState.collectLatest {
+                displayData(it)
+            }
+        }
     }
 
     private fun initFilterAdapter() {
