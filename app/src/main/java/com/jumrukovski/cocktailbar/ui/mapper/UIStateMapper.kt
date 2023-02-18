@@ -16,20 +16,6 @@ fun ResponseResult<Ingredient>.mapResponseResultToIngredientUIState(): UIState<I
     }
 }
 
-fun ResponseResult<List<Drink>>.mapResponseResultToDrinksUIState(): UIState<List<Drink>> {
-    val uiState = when (this) {
-        is ResponseResult.Success ->
-            when (this.data.isNullOrEmpty()) {
-                true -> UIState.SuccessWithNoData
-                false -> UIState.SuccessWithData(this.data)
-            }
-        is ResponseResult.Error -> UIState.Error(this.code)
-        is ResponseResult.Exception -> UIState.Exception(this.exception)
-    }
-
-    return uiState
-}
-
 suspend fun ResponseResult<List<Drink>>.mapResponseResultToDrinksUIStateFlow(): Flow<UIState<List<Drink>>> {
     val uiState = when (this) {
         is ResponseResult.Success ->

@@ -7,6 +7,7 @@ import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.ui.features.display.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.data.model.Filter
 import com.jumrukovski.cocktailbar.databinding.FragmentFilteredDrinksBinding
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -16,8 +17,15 @@ class FilteredDrinksFragment :
     override fun init() {
         initItemsAdapter(binding.items)
         val filter = arguments?.getSerializable(EXTRA_FILTER) as Filter
+        viewModel.requestData(filter)
+        setObservers()
+    }
+
+    private fun setObservers(){
         lifecycleScope.launch {
-            collectData(viewModel.fetchItems(filter))
+            viewModel.uiState.collectLatest {
+                displayData(it)
+            }
         }
     }
 
