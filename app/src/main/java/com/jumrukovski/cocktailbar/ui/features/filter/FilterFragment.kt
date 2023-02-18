@@ -12,7 +12,7 @@ import com.jumrukovski.cocktailbar.base.BaseFragment
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.FragmentFilterBinding
 import com.jumrukovski.cocktailbar.ui.state.UIState
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,31 +35,22 @@ class FilterFragment :
         }
 
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            viewModel.setCurrentFilter((view as TextView).text.toString())
-            lifecycleScope.launch {
-                collectData(viewModel.fetchData())
-            }
+            viewModel.requestData((view as TextView).text.toString())
         }
     }
 
-    private fun collectData(data: Flow<UIState<List<Drink>>>) {
-        lifecycleScope.launch {
-            data.collect { uiState ->
-                when (uiState) {
-                    is UIState.Loading -> showProgress(binding.progress, uiState.isLoading)
-                    is UIState.SuccessWithData -> {
-                       filterAdapter.apply {
-                           clear()
-                           addItems(uiState.data)
-                       }
-                    }
-                    is UIState.Error -> {
-                        // todo showErrorMessage(uiState.code)
-                    }
-                    is UIState.SuccessWithNoData -> filterAdapter.clear()
-                    is UIState.Exception -> ""//todo
+    private fun displayData(uiState: UIState<List<Drink>>) {
+        when (uiState) {
+            is UIState.Loading -> showProgress(binding.progress, uiState.isLoading)
+            is UIState.SuccessWithData -> {
+                filterAdapter.apply {
+                    clear()
+                    addItems(uiState.data)
                 }
             }
+            is UIState.Error -> "" //todo
+            is UIState.SuccessWithNoData -> filterAdapter.clear()
+            is UIState.Exception -> ""//todo
         }
     }
 
@@ -67,6 +58,15 @@ class FilterFragment :
         initFiltersAdapter()
         initItemsAdapter()
         setListeners()
+        setObservers()
+    }
+
+    private fun setObservers(){
+        lifecycleScope.launch {
+            viewModel.uiState.collectLatest {
+                displayData(it)
+            }
+        }
     }
 
     private fun initItemsAdapter() {
