@@ -30,14 +30,16 @@ suspend fun ResponseResult<List<Drink>>.mapResponseResultToDrinksUIStateFlow(): 
     return flowOf(uiState).asFlowWithResult()
 }
 
-fun ResponseResult<Drink>.mapResponseResultToDrinkUIState(): UIState<Drink> {
-    return when (this) {
+suspend fun ResponseResult<Drink>.mapResponseResultToDrinkUIStateFlow(): Flow<UIState<Drink>> {
+    val uiState =  when (this) {
         is ResponseResult.Error -> UIState.Error(this.code)
         is ResponseResult.Exception -> UIState.Exception(this.exception)
         is ResponseResult.Success -> this.data?.let {
             UIState.SuccessWithData(it)
         } ?: UIState.SuccessWithNoData
     }
+
+    return flowOf(uiState).asFlowWithResult()
 }
 
 suspend fun <T> Flow<UIState<T>>.asFlowWithResult(): Flow<UIState<T>> {

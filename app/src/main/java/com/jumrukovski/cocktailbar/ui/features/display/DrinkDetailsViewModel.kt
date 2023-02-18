@@ -7,11 +7,10 @@ import com.jumrukovski.cocktailbar.domain.usecase.AddFavoriteDrinkInDBUseCase
 import com.jumrukovski.cocktailbar.domain.usecase.GetDrinkDetailsUseCase
 import com.jumrukovski.cocktailbar.domain.usecase.GetFavoriteDrinkFromDBUseCase
 import com.jumrukovski.cocktailbar.domain.usecase.RemoveFavoriteDrinkFromDBUseCase
-import com.jumrukovski.cocktailbar.ui.mapper.asFlowWithResult
-import com.jumrukovski.cocktailbar.ui.mapper.mapResponseResultToDrinkUIState
+import com.jumrukovski.cocktailbar.ui.mapper.mapResponseResultToDrinkUIStateFlow
+import com.jumrukovski.cocktailbar.ui.state.UIState
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class DrinkDetailsViewModel(
@@ -22,13 +21,23 @@ class DrinkDetailsViewModel(
 ) :
     ViewModel() {
 
+    private val _uiState:MutableStateFlow<UIState<Drink>> = MutableStateFlow(UIState.Loading(true))
+    val uiState : StateFlow<UIState<Drink>> = _uiState.asStateFlow()
+
     private lateinit var drink: Drink
 
     fun init(drink: Drink) {
         this.drink = drink
     }
 
-    suspend fun getDrinkDetails() = drink.idDrink?.let { flow { emit(getDrinkDetails.invoke(it).mapResponseResultToDrinkUIState()) }.asFlowWithResult() }
+    fun requestDrinkDetails() {
+        viewModelScope.launch {
+            drink.idDrink?.let {drinkId ->
+                val responseResult = getDrinkDetails.invoke(drinkId)
+                _uiState.emitAll(responseResult.mapResponseResultToDrinkUIStateFlow())
+            }
+        }
+    }
 
     fun getFavoriteDrinkFromDB() =
         getFavoriteDrink.getFavoriteDrink(drink.idDrink!!).flowOn(Dispatchers.IO)
