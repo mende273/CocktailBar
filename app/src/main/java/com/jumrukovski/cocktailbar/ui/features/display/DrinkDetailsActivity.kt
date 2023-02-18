@@ -49,9 +49,9 @@ class DrinkDetailsActivity :
         }
     }
 
-    private fun collectFullDetailsData() {
+    private fun setObservers() {
         lifecycleScope.launch {
-            viewModel.getDrinkDetails()?.collect { uiState ->
+            viewModel.uiState.collect { uiState ->
                 when (uiState) {
                     is UIState.SuccessWithData ->  showData(uiState.data)
                     is UIState.Error -> "" //todo show error message
@@ -82,11 +82,12 @@ class DrinkDetailsActivity :
         binding.thumb.load(drink.strDrinkThumb)
         binding.name.text = drink.strDrink
         viewModel.init(drink)
-        collectFullDetailsData()
+        viewModel.requestDrinkDetails()
         collectFavoriteData(false)
         makeStatusBarTransparent()
         initAdapter()
         setListeners()
+        setObservers()
     }
 
     private fun initAdapter() {
