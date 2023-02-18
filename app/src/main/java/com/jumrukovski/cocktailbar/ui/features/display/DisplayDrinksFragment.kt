@@ -47,7 +47,7 @@ abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
         }
     }
 
-    private fun displayData(uiState: UIState<List<Drink>>) {
+    protected fun displayData(uiState: UIState<List<Drink>>) {
         when (uiState) {
             is UIState.Loading -> showProgress(getProgressView(), uiState.isLoading)
             is UIState.SuccessWithData -> {
@@ -56,13 +56,9 @@ abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
                    addItems(uiState.data)
                }
             }
-            is UIState.Error -> {
-                //todo showErrorMessage(uiState.code)
-            }
-            is UIState.SuccessWithNoData -> { adapter.clear() }
-            is UIState.Exception -> {
-                //todo exception
-            }
+            is UIState.Error -> "" // todo
+            is UIState.SuccessWithNoData -> "" //todo
+            is UIState.Exception -> "" //todo
         }
     }
 

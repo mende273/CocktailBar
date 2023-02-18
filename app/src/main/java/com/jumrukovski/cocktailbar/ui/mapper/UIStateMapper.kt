@@ -4,10 +4,7 @@ import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.data.model.Ingredient
 import com.jumrukovski.cocktailbar.data.network.ResponseResult
 import com.jumrukovski.cocktailbar.ui.state.UIState
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 
 fun ResponseResult<Ingredient>.mapResponseResultToIngredientUIState(): UIState<Ingredient> {
     return when (this) {
@@ -31,6 +28,20 @@ fun ResponseResult<List<Drink>>.mapResponseResultToDrinksUIState(): UIState<List
     }
 
     return uiState
+}
+
+suspend fun ResponseResult<List<Drink>>.mapResponseResultToDrinksUIStateFlow(): Flow<UIState<List<Drink>>> {
+    val uiState = when (this) {
+        is ResponseResult.Success ->
+            when (this.data.isNullOrEmpty()) {
+                true -> UIState.SuccessWithNoData
+                false -> UIState.SuccessWithData(this.data)
+            }
+        is ResponseResult.Error -> UIState.Error(this.code)
+        is ResponseResult.Exception -> UIState.Exception(this.exception)
+    }
+
+    return flowOf(uiState).asFlowWithResult()
 }
 
 fun ResponseResult<Drink>.mapResponseResultToDrinkUIState(): UIState<Drink> {
