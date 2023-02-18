@@ -5,15 +5,12 @@ import android.widget.ProgressBar
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.base.BaseFragment
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.ui.state.UIState
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
@@ -38,14 +35,6 @@ abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
     }
 
     abstract fun getProgressView(): ProgressBar
-
-    protected fun collectData(data: Flow<UIState<List<Drink>>>) {
-        lifecycleScope.launch {
-            data.collect {
-                displayData(it)
-            }
-        }
-    }
 
     protected fun displayData(uiState: UIState<List<Drink>>) {
         when (uiState) {
