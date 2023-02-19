@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jumrukovski.cocktailbar.data.model.Ingredient
 import com.jumrukovski.cocktailbar.domain.usecase.SearchIngredientUseCase
-import com.jumrukovski.cocktailbar.ui.mapper.asFlowWithResult
-import com.jumrukovski.cocktailbar.ui.mapper.mapResponseResultToIngredientUIState
+import com.jumrukovski.cocktailbar.ui.mapper.mapResponseResultToIngredientUIStateFlow
 import com.jumrukovski.cocktailbar.ui.state.UIState
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -19,7 +18,7 @@ class IngredientDetailsViewModel(private val searchIngredient: SearchIngredientU
     fun requestData(name: String) {
         viewModelScope.launch {
             val responseResult = searchIngredient.invoke(name)
-            _uiState.emitAll(flowOf(responseResult.mapResponseResultToIngredientUIState()).asFlowWithResult())
+            _uiState.emitAll(responseResult.mapResponseResultToIngredientUIStateFlow())
         }
     }
 }
