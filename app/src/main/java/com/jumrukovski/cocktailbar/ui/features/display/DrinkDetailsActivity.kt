@@ -73,8 +73,11 @@ class DrinkDetailsActivity :
             instructions.text = drink.strInstructions
         }
 
-        ingredientsAdapter.addItems(drink.getIngredientsWithMeasurements()
-            .filter { item -> item.first != null })
+        with(ingredientsAdapter){
+            clear()
+            addItems(drink.getIngredientsWithMeasurements()
+                .filter { item -> item.first != null })
+        }
     }
 
     override fun init() {
