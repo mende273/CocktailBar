@@ -6,6 +6,8 @@ import android.view.View
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.util.Pair
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
@@ -15,6 +17,7 @@ import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.ActivityDrinkDetailsBinding
 import com.jumrukovski.cocktailbar.ui.state.UIState
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -35,31 +38,35 @@ class DrinkDetailsActivity :
 
     private fun collectFavoriteData(isFromClick: Boolean) {
         lifecycleScope.launch {
-            viewModel.getFavoriteDrinkFromDB().collect {
-                var isFav = it != null
-                if (isFromClick) {
-                    when (isFav) {
-                        true -> viewModel.removeAsFavorite()
-                        false -> viewModel.saveAsFavorite()
+            viewModel.getFavoriteDrinkFromDB()
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collectLatest {
+                    var isFav = it != null
+                    if (isFromClick) {
+                        when (isFav) {
+                            true -> viewModel.removeAsFavorite()
+                            false -> viewModel.saveAsFavorite()
+                        }
+                        isFav = !isFav
                     }
-                    isFav = !isFav
+                    manageFavoriteIcon(isFav)
                 }
-                manageFavoriteIcon(isFav)
-            }
         }
     }
 
     private fun setObservers() {
         lifecycleScope.launch {
-            viewModel.uiState.collect { uiState ->
-                when (uiState) {
-                    is UIState.SuccessWithData ->  showData(uiState.data)
-                    is UIState.Error -> "" //todo show error message
-                    is UIState.Loading -> ""//todo
-                    is UIState.SuccessWithNoData -> ""//todo
-                    is UIState.Exception -> "" //todo
+            viewModel.uiState
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collect { uiState ->
+                    when (uiState) {
+                        is UIState.SuccessWithData -> showData(uiState.data)
+                        is UIState.Error -> "" //todo show error message
+                        is UIState.Loading -> ""//todo
+                        is UIState.SuccessWithNoData -> ""//todo
+                        is UIState.Exception -> "" //todo
+                    }
                 }
-            }
         }
     }
 

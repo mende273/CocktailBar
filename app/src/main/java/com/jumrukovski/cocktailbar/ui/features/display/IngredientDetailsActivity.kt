@@ -2,6 +2,8 @@ package com.jumrukovski.cocktailbar.ui.features.display
 
 import android.content.Context
 import android.content.Intent
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.jumrukovski.cocktailbar.R
@@ -47,9 +49,11 @@ class IngredientDetailsActivity :
 
     private fun setupObservers() {
         lifecycleScope.launch {
-            viewModel.uiState.collectLatest {
-                displayData(it)
-            }
+            viewModel.uiState
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collectLatest {
+                    displayData(it)
+                }
         }
     }
 
