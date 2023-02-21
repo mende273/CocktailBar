@@ -4,6 +4,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jumrukovski.cocktailbar.R
@@ -61,11 +63,13 @@ class FilterFragment :
         setObservers()
     }
 
-    private fun setObservers(){
+    private fun setObservers() {
         lifecycleScope.launch {
-            viewModel.uiState.collectLatest {
-                displayData(it)
-            }
+            viewModel.uiState
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collectLatest {
+                    displayData(it)
+                }
         }
     }
 

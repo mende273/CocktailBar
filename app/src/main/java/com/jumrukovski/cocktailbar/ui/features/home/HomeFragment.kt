@@ -4,10 +4,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.ui.features.display.DisplayDrinksFragment
 import com.jumrukovski.cocktailbar.databinding.FragmentHomeBinding
+import com.jumrukovski.cocktailbar.ui.features.display.DisplayDrinksFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -33,11 +35,13 @@ class HomeFragment :
         setObservers()
     }
 
-    private fun setObservers(){
+    private fun setObservers() {
         lifecycleScope.launch {
-            viewModel.uiState.collectLatest {
-                displayData(it)
-            }
+            viewModel.uiState
+                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .collectLatest {
+                    displayData(it)
+                }
         }
     }
 
