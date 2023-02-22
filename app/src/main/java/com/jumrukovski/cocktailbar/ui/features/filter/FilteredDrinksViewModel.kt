@@ -21,7 +21,7 @@ class FilteredDrinksViewModel(private val getFilteredDrinks: GetFilteredDrinksUs
 
     fun requestData(filter: Filter) {
         viewModelScope.launch {
-            val responseResult = getFilteredDrinks.invoke(filter.param, filter.prepareTypeParam())
+            val responseResult = getFilteredDrinks(filter.param, filter.prepareTypeParam())
             _uiState.emitAll(responseResult.mapResponseResultToDrinksUIStateFlow())
         }
     }

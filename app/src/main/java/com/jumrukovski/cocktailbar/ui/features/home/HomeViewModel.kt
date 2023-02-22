@@ -24,7 +24,7 @@ class HomeViewModel(private val getCocktailsByFirstLetter: GetCocktailsByFirstLe
         val filter = filters[filterPosition].toString()
 
         viewModelScope.launch {
-            val responseResult = getCocktailsByFirstLetter.invoke(filter)
+            val responseResult = getCocktailsByFirstLetter(filter)
             _uiState.emitAll(responseResult.mapResponseResultToDrinksUIStateFlow())
         }
     }
