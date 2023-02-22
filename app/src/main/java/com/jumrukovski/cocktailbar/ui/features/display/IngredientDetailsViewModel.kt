@@ -17,7 +17,7 @@ class IngredientDetailsViewModel(private val searchIngredient: SearchIngredientU
 
     fun requestData(name: String) {
         viewModelScope.launch {
-            val responseResult = searchIngredient.invoke(name)
+            val responseResult = searchIngredient(name)
             _uiState.emitAll(responseResult.mapResponseResultToIngredientUIStateFlow())
         }
     }

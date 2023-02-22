@@ -20,7 +20,7 @@ class SearchViewModel(private val searchDrinksByName: SearchDrinksByNameUseCase)
 
     fun requestData(name: String) {
         viewModelScope.launch {
-            val responseResult = searchDrinksByName.invoke(name)
+            val responseResult = searchDrinksByName(name)
             _uiState.emitAll(responseResult.mapResponseResultToDrinksUIStateFlow())
         }
     }

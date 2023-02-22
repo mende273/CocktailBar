@@ -40,7 +40,7 @@ class FilterViewModel(private val getFilterList: GetFilterListUseCase) : ViewMod
     fun requestData(filter:String) {
         setCurrentFilter(filter)
         viewModelScope.launch {
-            val responseResult = getFilterList.invoke(currentFilter.param, "list")
+            val responseResult = getFilterList(currentFilter.param, "list")
             _uiState.emitAll(responseResult.mapResponseResultToDrinksUIStateFlow())
         }
     }

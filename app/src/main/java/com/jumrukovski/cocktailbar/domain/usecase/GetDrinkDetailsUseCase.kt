@@ -7,7 +7,7 @@ import kotlinx.coroutines.withContext
 
 class GetDrinkDetailsUseCase(private val apiRepository: ApiRepository) {
 
-    suspend fun invoke(drinkId: Long) = withContext(Dispatchers.IO){
+    suspend operator fun invoke(drinkId: Long) = withContext(Dispatchers.IO){
         return@withContext apiRepository.getDrinkDetailsAsync(drinkId).mapDrinkToResponseResult()
     }
 }

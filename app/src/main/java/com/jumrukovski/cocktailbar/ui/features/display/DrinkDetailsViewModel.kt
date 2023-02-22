@@ -33,7 +33,7 @@ class DrinkDetailsViewModel(
     fun requestDrinkDetails() {
         viewModelScope.launch {
             drink.idDrink?.let {drinkId ->
-                val responseResult = getDrinkDetails.invoke(drinkId)
+                val responseResult = getDrinkDetails(drinkId)
                 _uiState.emitAll(responseResult.mapResponseResultToDrinkUIStateFlow())
             }
         }
