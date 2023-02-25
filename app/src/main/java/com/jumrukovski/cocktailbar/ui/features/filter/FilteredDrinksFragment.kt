@@ -50,4 +50,6 @@ class FilteredDrinksFragment :
     }
 
     override val viewModel: FilteredDrinksViewModel by viewModel()
+
+    override fun getViewBinding() = FragmentFilteredDrinksBinding.inflate(layoutInflater)
 }

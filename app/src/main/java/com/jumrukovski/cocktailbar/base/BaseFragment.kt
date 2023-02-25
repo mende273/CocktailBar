@@ -7,16 +7,17 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 
-    protected lateinit var binding: DB
+    protected lateinit var binding: VB
 
     protected abstract val viewModel: VM
+
+    abstract fun getViewBinding(): VB
 
     @LayoutRes
     abstract fun getLayoutRes(): Int
@@ -24,7 +25,7 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : ViewModel> : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, getLayoutRes(), container, false)
+        binding = getViewBinding()
         return binding.root
     }
 

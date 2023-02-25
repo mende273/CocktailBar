@@ -103,4 +103,6 @@ class FilterFragment :
     }
 
     override val viewModel: FilterViewModel by viewModel()
+
+    override fun getViewBinding() = FragmentFilterBinding.inflate(layoutInflater)
 }

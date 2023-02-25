@@ -1,56 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
+        android:id="@+id/filterLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/common_margin"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/filterLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="@dimen/common_margin"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/filterTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/common_margin"
-                android:text="@string/filter_by"
-                android:textColor="@color/colorWhite"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toStartOf="@id/filters"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:id="@+id/filters"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_rounded_button_enabled"
-                android:popupBackground="@color/colorPrimaryBackground"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/filterTitle"
-                app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
-
-        <ProgressBar
-            android:id="@+id/progress"
+        <TextView
+            android:id="@+id/filterTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+            android:layout_marginEnd="@dimen/common_margin"
+            android:text="@string/filter_by"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/filters"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/items"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/filterLayout"
-            android:layout_marginStart="@dimen/common_margin"
-            android:layout_marginEnd="@dimen/common_margin" />
-    </RelativeLayout>
-</layout>
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/filters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_button_enabled"
+            android:popupBackground="@color/colorPrimaryBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/filterTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/filterLayout"
+        android:layout_marginStart="@dimen/common_margin"
+        android:layout_marginEnd="@dimen/common_margin" />
+</RelativeLayout>

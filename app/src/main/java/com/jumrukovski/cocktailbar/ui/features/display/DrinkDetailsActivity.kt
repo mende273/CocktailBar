@@ -151,4 +151,6 @@ class DrinkDetailsActivity :
     }
 
     override val viewModel: DrinkDetailsViewModel by viewModel()
+
+    override fun getViewBinding() = ActivityDrinkDetailsBinding.inflate(layoutInflater)
 }

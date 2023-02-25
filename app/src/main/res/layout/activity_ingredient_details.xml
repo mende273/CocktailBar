@@ -1,79 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/layout_toolbar"
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" />
-
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:visibility="gone" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/toolbar">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/common_double_margin"
-                    android:background="@drawable/shape_rounded_dark_black"
-                    android:orientation="vertical"
-                    android:padding="@dimen/common_margin">
-
-                    <TextView
-                        android:id="@+id/type"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textColor="@color/colorTextGray"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/alcohol"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textColor="@color/colorTextGray"
-                        android:textSize="18sp" />
-                </LinearLayout>
+                android:layout_margin="@dimen/common_double_margin"
+                android:background="@drawable/shape_rounded_dark_black"
+                android:orientation="vertical"
+                android:padding="@dimen/common_margin">
 
                 <TextView
-                    android:id="@+id/description"
+                    android:id="@+id/type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/common_double_margin"
-                    android:layout_marginEnd="@dimen/common_double_margin"
                     android:gravity="center"
                     android:textColor="@color/colorTextGray"
                     android:textSize="18sp" />
 
-                <ImageView
-                    android:id="@+id/thumb"
+                <TextView
+                    android:id="@+id/alcohol"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/common_double_margin"
-                    android:layout_marginTop="@dimen/common_double_margin"
-                    android:layout_marginEnd="@dimen/common_double_margin"
-                    android:adjustViewBounds="true"
-                    android:background="@null" />
+                    android:gravity="center"
+                    android:textColor="@color/colorTextGray"
+                    android:textSize="18sp" />
             </LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
-</layout>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/common_double_margin"
+                android:layout_marginEnd="@dimen/common_double_margin"
+                android:gravity="center"
+                android:textColor="@color/colorTextGray"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/thumb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/common_double_margin"
+                android:layout_marginTop="@dimen/common_double_margin"
+                android:layout_marginEnd="@dimen/common_double_margin"
+                android:adjustViewBounds="true"
+                android:background="@null" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

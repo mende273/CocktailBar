@@ -3,8 +3,8 @@ package com.jumrukovski.cocktailbar.base
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 
 abstract class BaseBindingAdapter<I> : RecyclerView.Adapter<BaseBindingViewHolder>(),
     BaseBindingViewHolder.ClickListener {
@@ -22,7 +22,7 @@ abstract class BaseBindingAdapter<I> : RecyclerView.Adapter<BaseBindingViewHolde
         return BaseBindingViewHolder(binding, this)
     }
 
-    protected abstract fun bind(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): ViewDataBinding
+    protected abstract fun bind(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): ViewBinding
 
     override fun getItemCount(): Int = items.size
 

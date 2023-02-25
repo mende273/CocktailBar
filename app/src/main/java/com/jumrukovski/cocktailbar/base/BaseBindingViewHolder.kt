@@ -1,10 +1,10 @@
 package com.jumrukovski.cocktailbar.base
 
 import android.view.View
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 
-open class BaseBindingViewHolder(val binding: ViewDataBinding, private val clickListener: ClickListener) :
+open class BaseBindingViewHolder(val binding: ViewBinding, private val clickListener: ClickListener) :
     RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
     interface ClickListener {

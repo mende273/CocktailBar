@@ -70,4 +70,6 @@ class SearchFragment :
     }
 
     override val viewModel: SearchViewModel by viewModel()
+
+    override fun getViewBinding() = FragmentSearchBinding.inflate(layoutInflater)
 }

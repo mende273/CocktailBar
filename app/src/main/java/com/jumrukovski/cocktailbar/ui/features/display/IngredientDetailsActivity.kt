@@ -74,4 +74,6 @@ class IngredientDetailsActivity :
     }
 
     override val viewModel: IngredientDetailsViewModel by viewModel()
+
+    override fun getViewBinding() = ActivityIngredientDetailsBinding.inflate(layoutInflater)
 }
