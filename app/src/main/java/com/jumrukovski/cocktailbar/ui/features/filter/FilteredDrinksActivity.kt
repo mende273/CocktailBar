@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.data.model.Filter
 import com.jumrukovski.cocktailbar.databinding.ActivityFilteredDrinksBinding
@@ -15,7 +14,8 @@ class FilteredDrinksActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_filtered_drinks)
+        binding =  ActivityFilteredDrinksBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val filter = intent.getSerializableExtra(EXTRA_FILTER) as Filter
         initToolbar(filter)

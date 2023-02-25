@@ -19,6 +19,8 @@ class HomeFragment :
 
     override val viewModel: HomeViewModel by viewModel()
 
+    override fun getViewBinding() = FragmentHomeBinding.inflate(layoutInflater)
+
     private val onFilterClickedListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(p0: AdapterView<*>?) {
         }

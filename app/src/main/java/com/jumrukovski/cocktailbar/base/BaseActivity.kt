@@ -8,24 +8,25 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
+import androidx.viewbinding.ViewBinding
 import com.jumrukovski.cocktailbar.ui.views.CenteredToolbar
 
-abstract class BaseActivity<DB : ViewDataBinding, VM : ViewModel> :
-    AppCompatActivity() {
+abstract class BaseActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity() {
 
-    protected lateinit var binding: DB
+    protected lateinit var binding: VB
 
     protected abstract val viewModel: VM
+
+    abstract fun getViewBinding(): VB
 
     @LayoutRes
     abstract fun getLayoutRes(): Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, getLayoutRes())
+        binding = getViewBinding()
+        setContentView(binding.root)
 
         init()
     }

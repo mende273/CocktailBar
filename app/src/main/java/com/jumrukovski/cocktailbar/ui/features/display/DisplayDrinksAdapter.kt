@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.Nullable
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
+import androidx.viewbinding.ViewBinding
 import coil.load
 import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.base.BaseBindingViewHolder
@@ -14,7 +14,7 @@ import com.jumrukovski.cocktailbar.databinding.ItemDrinkBinding
 
 class DisplayDrinksAdapter : BaseBindingAdapter<Drink>() {
 
-    override fun bind(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): ViewDataBinding =
+    override fun bind(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): ViewBinding =
         ItemDrinkBinding.inflate(inflater, parent, false)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder {

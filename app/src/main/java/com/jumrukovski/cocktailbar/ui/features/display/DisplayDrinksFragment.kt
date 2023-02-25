@@ -2,18 +2,18 @@ package com.jumrukovski.cocktailbar.ui.features.display
 
 import android.view.View
 import android.widget.ProgressBar
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.base.BaseFragment
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.ui.state.UIState
 import org.koin.android.ext.android.inject
 
-abstract class DisplayDrinksFragment<DB : ViewDataBinding, VM : ViewModel> :
+abstract class DisplayDrinksFragment<DB : ViewBinding, VM : ViewModel> :
     BaseFragment<DB, VM>() {
 
     private val adapter: DisplayDrinksAdapter by inject()

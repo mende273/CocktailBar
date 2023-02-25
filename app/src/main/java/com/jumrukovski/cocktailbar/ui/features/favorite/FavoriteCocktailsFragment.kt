@@ -29,4 +29,6 @@ class FavoriteCocktailsFragment :
     }
 
     override val viewModel: FavoriteCocktailsViewModel by viewModel()
+
+    override fun getViewBinding() = FragmentFavoriteBinding.inflate(layoutInflater)
 }

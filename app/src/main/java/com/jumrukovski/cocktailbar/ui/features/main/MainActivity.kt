@@ -39,5 +39,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun getLayoutRes() = R.layout.activity_main
+
     override val viewModel: MainViewModel by viewModel()
+
+    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 }
