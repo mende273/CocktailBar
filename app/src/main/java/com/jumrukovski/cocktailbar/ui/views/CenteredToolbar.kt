@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.jumrukovski.cocktailbar.R
 
 class CenteredToolbar(context: Context?, attrs: AttributeSet?) : Toolbar(context!!, attrs) {
@@ -35,8 +36,8 @@ class CenteredToolbar(context: Context?, attrs: AttributeSet?) : Toolbar(context
                 ellipsize = TextUtils.TruncateAt.END
                 gravity = Gravity.CENTER
                 setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-                setTextColor(resources.getColor(R.color.white))
-                setTextAppearance(context, R.style.TextAppearance_AppCompat_Widget_ActionBar_Title)
+                setTextColor(ContextCompat.getColor(context,R.color.white))
+                setTextAppearance(R.style.TextAppearance_AppCompat_Widget_ActionBar_Title)
 
                 val lp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
                 lp.gravity = Gravity.CENTER
