@@ -9,8 +9,8 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
-import com.jumrukovski.cocktailbar.base.BaseFragment
+import com.jumrukovski.cocktailbar.ui.base.BaseBindingAdapter
+import com.jumrukovski.cocktailbar.ui.base.BaseFragment
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.FragmentFilterBinding
 import com.jumrukovski.cocktailbar.ui.state.UIState

@@ -12,8 +12,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.base.BaseActivity
-import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
+import com.jumrukovski.cocktailbar.ui.base.BaseActivity
+import com.jumrukovski.cocktailbar.ui.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.ActivityDrinkDetailsBinding
 import com.jumrukovski.cocktailbar.ui.state.UIState
