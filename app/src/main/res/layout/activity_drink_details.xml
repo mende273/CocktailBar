@@ -59,7 +59,7 @@
         android:background="@drawable/shape_rounded_button_enabled"
         android:orientation="vertical"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="400dp"
+        app:behavior_peekHeight="auto"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <RelativeLayout
