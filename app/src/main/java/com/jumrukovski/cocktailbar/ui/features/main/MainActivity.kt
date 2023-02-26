@@ -2,7 +2,7 @@ package com.jumrukovski.cocktailbar.ui.features.main
 
 import androidx.viewpager2.widget.ViewPager2
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.base.BaseActivity
+import com.jumrukovski.cocktailbar.ui.base.BaseActivity
 import com.jumrukovski.cocktailbar.databinding.ActivityMainBinding
 import com.fxn.OnBubbleClickListener
 import org.koin.androidx.viewmodel.ext.android.viewModel

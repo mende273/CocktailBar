@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
-import com.jumrukovski.cocktailbar.base.BaseBindingViewHolder
+import com.jumrukovski.cocktailbar.ui.base.BaseBindingAdapter
+import com.jumrukovski.cocktailbar.ui.base.BaseBindingViewHolder
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.ItemCategoryFilterBinding
 

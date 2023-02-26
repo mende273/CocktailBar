@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.base
+package com.jumrukovski.cocktailbar.ui.base
 
 import android.view.LayoutInflater
 import android.view.View

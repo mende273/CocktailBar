@@ -7,7 +7,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.base.BaseActivity
+import com.jumrukovski.cocktailbar.ui.base.BaseActivity
 import com.jumrukovski.cocktailbar.data.model.Ingredient
 import com.jumrukovski.cocktailbar.data.network.ApiService
 import com.jumrukovski.cocktailbar.databinding.ActivityIngredientDetailsBinding

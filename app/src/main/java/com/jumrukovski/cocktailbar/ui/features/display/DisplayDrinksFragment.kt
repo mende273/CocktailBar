@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.jumrukovski.cocktailbar.base.BaseBindingAdapter
-import com.jumrukovski.cocktailbar.base.BaseFragment
+import com.jumrukovski.cocktailbar.ui.base.BaseBindingAdapter
+import com.jumrukovski.cocktailbar.ui.base.BaseFragment
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.ui.state.UIState
 import org.koin.android.ext.android.inject

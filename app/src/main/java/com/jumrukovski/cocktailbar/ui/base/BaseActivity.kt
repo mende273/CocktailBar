@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.base
+package com.jumrukovski.cocktailbar.ui.base
 
 import android.graphics.Color
 import android.os.Bundle
