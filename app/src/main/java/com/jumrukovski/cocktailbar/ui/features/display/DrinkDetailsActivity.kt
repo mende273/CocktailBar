@@ -117,7 +117,7 @@ class DrinkDetailsActivity :
     }
 
     private fun setListeners() {
-        binding.btnBack.setOnClickListener { onBackPressed() }
+        binding.btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
         binding.instructionsTitle.setOnClickListener { updateInstructionsUI() }
         binding.save.setOnClickListener { collectFavoriteData(true) }
         ingredientsAdapter.setItemClickListener(itemClickListener)
