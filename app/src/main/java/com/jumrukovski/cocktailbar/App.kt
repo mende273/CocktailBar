@@ -1,7 +1,7 @@
 package com.jumrukovski.cocktailbar
 
 import android.app.Application
-import com.jumrukovski.cocktailbar.di.*
+import com.jumrukovski.cocktailbar.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -11,16 +11,7 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            modules(
-                listOf(
-                    networkModule,
-                    apiRepositoryModule,
-                    viewModelModule,
-                    adapterModule,
-                    dbModule,
-                    localRepositoryModule
-                )
-            )
+            modules(appModule)
         }
     }
 }
