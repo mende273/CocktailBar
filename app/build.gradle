@@ -74,6 +74,8 @@ dependencies {
 
     // Koin Dependency Injection
     implementation 'io.insert-koin:koin-android:3.4.0'
+    testImplementation 'io.insert-koin:koin-test:3.4.0'
+    testImplementation 'io.insert-koin:koin-test-junit4:3.4.0'
 
     // Coil Image Loader
     implementation 'io.coil-kt:coil:2.2.2'
