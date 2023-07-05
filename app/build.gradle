@@ -33,6 +33,19 @@ android {
         viewBinding true
     }
 
+    tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+
+    ktlint{
+        android = true
+        ignoreFailures = false
+        disabledRules = ["max-line-length"]
+        reporters{
+            reporter "plain"
+            reporter "checkstyle"
+            reporter "sarif"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
