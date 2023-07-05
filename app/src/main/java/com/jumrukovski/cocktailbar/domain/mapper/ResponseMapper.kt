@@ -1,6 +1,9 @@
 package com.jumrukovski.cocktailbar.domain.mapper
 
-import com.jumrukovski.cocktailbar.data.model.*
+import com.jumrukovski.cocktailbar.data.model.Drink
+import com.jumrukovski.cocktailbar.data.model.DrinksResponse
+import com.jumrukovski.cocktailbar.data.model.Ingredient
+import com.jumrukovski.cocktailbar.data.model.IngredientsResponse
 import com.jumrukovski.cocktailbar.data.network.ResponseResult
 import retrofit2.Response
 

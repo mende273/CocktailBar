@@ -10,7 +10,11 @@ import com.jumrukovski.cocktailbar.domain.usecase.RemoveFavoriteDrinkFromDBUseCa
 import com.jumrukovski.cocktailbar.ui.mapper.mapResponseResultToDrinkUIStateFlow
 import com.jumrukovski.cocktailbar.ui.state.UIState
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 class DrinkDetailsViewModel(
@@ -21,8 +25,8 @@ class DrinkDetailsViewModel(
 ) :
     ViewModel() {
 
-    private val _uiState:MutableStateFlow<UIState<Drink>> = MutableStateFlow(UIState.Loading(true))
-    val uiState : StateFlow<UIState<Drink>> = _uiState.asStateFlow()
+    private val _uiState: MutableStateFlow<UIState<Drink>> = MutableStateFlow(UIState.Loading(true))
+    val uiState: StateFlow<UIState<Drink>> = _uiState.asStateFlow()
 
     private lateinit var drink: Drink
 
@@ -32,7 +36,7 @@ class DrinkDetailsViewModel(
 
     fun requestDrinkDetails() {
         viewModelScope.launch {
-            drink.idDrink?.let {drinkId ->
+            drink.idDrink?.let { drinkId ->
                 val responseResult = getDrinkDetails(drinkId)
                 _uiState.emitAll(responseResult.mapResponseResultToDrinkUIStateFlow())
             }

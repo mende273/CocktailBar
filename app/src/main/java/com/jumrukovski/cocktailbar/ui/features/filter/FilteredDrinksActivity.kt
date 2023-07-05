@@ -14,7 +14,7 @@ class FilteredDrinksActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding =  ActivityFilteredDrinksBinding.inflate(layoutInflater)
+        binding = ActivityFilteredDrinksBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val filter = intent.getSerializableExtra(EXTRA_FILTER) as Filter

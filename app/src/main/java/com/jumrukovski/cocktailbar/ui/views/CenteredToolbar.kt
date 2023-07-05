@@ -36,7 +36,7 @@ class CenteredToolbar(context: Context?, attrs: AttributeSet?) : Toolbar(context
                 ellipsize = TextUtils.TruncateAt.END
                 gravity = Gravity.CENTER
                 setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-                setTextColor(ContextCompat.getColor(context,R.color.white))
+                setTextColor(ContextCompat.getColor(context, R.color.white))
                 setTextAppearance(R.style.TextAppearance_AppCompat_Widget_ActionBar_Title)
 
                 val lp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)

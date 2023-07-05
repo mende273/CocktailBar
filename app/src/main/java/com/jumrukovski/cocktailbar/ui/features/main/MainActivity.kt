@@ -1,10 +1,10 @@
 package com.jumrukovski.cocktailbar.ui.features.main
 
 import androidx.viewpager2.widget.ViewPager2
-import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.ui.base.BaseActivity
-import com.jumrukovski.cocktailbar.databinding.ActivityMainBinding
 import com.fxn.OnBubbleClickListener
+import com.jumrukovski.cocktailbar.R
+import com.jumrukovski.cocktailbar.databinding.ActivityMainBinding
+import com.jumrukovski.cocktailbar.ui.base.BaseActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {

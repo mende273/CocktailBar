@@ -7,10 +7,10 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.ui.base.BaseActivity
 import com.jumrukovski.cocktailbar.data.model.Ingredient
 import com.jumrukovski.cocktailbar.data.network.ApiService
 import com.jumrukovski.cocktailbar.databinding.ActivityIngredientDetailsBinding
+import com.jumrukovski.cocktailbar.ui.base.BaseActivity
 import com.jumrukovski.cocktailbar.ui.state.UIState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -32,9 +32,9 @@ class IngredientDetailsActivity :
                     )
                     description.text = uiState.data.strDescription
                 }
-                is UIState.Error -> "" //todo
-                is UIState.SuccessWithNoData -> "" //todo
-                is UIState.Exception -> ""//todo
+                is UIState.Error -> "" // todo
+                is UIState.SuccessWithNoData -> "" // todo
+                is UIState.Exception -> "" // todo
             }
         }
     }

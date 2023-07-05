@@ -12,10 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.jumrukovski.cocktailbar.R
-import com.jumrukovski.cocktailbar.ui.base.BaseActivity
-import com.jumrukovski.cocktailbar.ui.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.ActivityDrinkDetailsBinding
+import com.jumrukovski.cocktailbar.ui.base.BaseActivity
+import com.jumrukovski.cocktailbar.ui.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.ui.state.UIState
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -61,10 +61,10 @@ class DrinkDetailsActivity :
                 .collect { uiState ->
                     when (uiState) {
                         is UIState.SuccessWithData -> showData(uiState.data)
-                        is UIState.Error -> "" //todo show error message
-                        is UIState.Loading -> ""//todo
-                        is UIState.SuccessWithNoData -> ""//todo
-                        is UIState.Exception -> "" //todo
+                        is UIState.Error -> "" // todo show error message
+                        is UIState.Loading -> "" // todo
+                        is UIState.SuccessWithNoData -> "" // todo
+                        is UIState.Exception -> "" // todo
                     }
                 }
         }
@@ -80,10 +80,12 @@ class DrinkDetailsActivity :
             instructions.text = drink.strInstructions
         }
 
-        with(ingredientsAdapter){
+        with(ingredientsAdapter) {
             clear()
-            addItems(drink.getIngredientsWithMeasurements()
-                .filter { item -> item.first != null })
+            addItems(
+                drink.getIngredientsWithMeasurements()
+                    .filter { item -> item.first != null }
+            )
         }
     }
 
@@ -113,7 +115,7 @@ class DrinkDetailsActivity :
             false -> R.drawable.ic_saved_white_24dp
         }
 
-        binding.save.setImageDrawable(ResourcesCompat.getDrawable(resources,res,null))
+        binding.save.setImageDrawable(ResourcesCompat.getDrawable(resources, res, null))
     }
 
     private fun setListeners() {

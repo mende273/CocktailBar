@@ -7,10 +7,10 @@ import androidx.annotation.Nullable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.viewbinding.ViewBinding
 import coil.load
-import com.jumrukovski.cocktailbar.ui.base.BaseBindingAdapter
-import com.jumrukovski.cocktailbar.ui.base.BaseBindingViewHolder
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.databinding.ItemDrinkBinding
+import com.jumrukovski.cocktailbar.ui.base.BaseBindingAdapter
+import com.jumrukovski.cocktailbar.ui.base.BaseBindingViewHolder
 
 class DisplayDrinksAdapter : BaseBindingAdapter<Drink>() {
 
@@ -40,7 +40,7 @@ class DisplayDrinksAdapter : BaseBindingAdapter<Drink>() {
         }
     }
 
-    fun setData(newItems:List<Drink>){
+    fun setData(newItems: List<Drink>) {
         val diffCallback = DrinkDiffCallback(items, newItems)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
         items.clear()

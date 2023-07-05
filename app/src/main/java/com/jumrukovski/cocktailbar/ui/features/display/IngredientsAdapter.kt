@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.util.Pair
 import androidx.viewbinding.ViewBinding
+import com.jumrukovski.cocktailbar.databinding.ItemIngredientBinding
 import com.jumrukovski.cocktailbar.ui.base.BaseBindingAdapter
 import com.jumrukovski.cocktailbar.ui.base.BaseBindingViewHolder
-import com.jumrukovski.cocktailbar.databinding.ItemIngredientBinding
 
 class IngredientsAdapter : BaseBindingAdapter<Pair<String, String>>() {
 
