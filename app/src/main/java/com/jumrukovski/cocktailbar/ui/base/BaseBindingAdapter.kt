@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseBindingAdapter<I> : RecyclerView.Adapter<BaseBindingViewHolder>(),
+abstract class BaseBindingAdapter<I> :
+    RecyclerView.Adapter<BaseBindingViewHolder>(),
     BaseBindingViewHolder.ClickListener {
 
     protected var items: MutableList<I> = ArrayList()

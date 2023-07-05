@@ -9,7 +9,7 @@ class LocalRepository(private val localDB: LocalDB) {
 
     fun getAllFavoriteDrinks() = localDB.drinkDao().all()
 
-    fun getFavorite(id: Long): Flow<Drink?> = flow { emit( localDB.drinkDao().get(id)) }
+    fun getFavorite(id: Long): Flow<Drink?> = flow { emit(localDB.drinkDao().get(id)) }
 
     fun addFavorite(entity: Drink) {
         localDB.drinkDao().add(entity)

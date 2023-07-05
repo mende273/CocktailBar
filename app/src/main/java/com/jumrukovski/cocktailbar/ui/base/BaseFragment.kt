@@ -23,7 +23,9 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
     abstract fun getLayoutRes(): Int
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = getViewBinding()
         return binding.root

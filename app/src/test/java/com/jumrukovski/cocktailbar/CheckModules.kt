@@ -10,7 +10,6 @@ class CheckModules {
     @OptIn(KoinExperimentalAPI::class)
     @Test
     fun checkKoinModule() {
-
         // Verify Koin configuration
         appModule.verify(
             extraTypes = listOf(

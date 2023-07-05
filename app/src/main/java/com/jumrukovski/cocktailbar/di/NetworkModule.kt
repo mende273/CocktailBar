@@ -15,7 +15,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 val networkModule = module {
     single { provideService(get()) }
     single { provideRetrofit(get()) }
-    single { provideOkHttpClient(get(), get(),get()) }
+    single { provideOkHttpClient(get(), get(), get()) }
     single { provideHttpLoggingInterceptor() }
     single { provideNoConnectionInterceptor() }
     single { provideHttpCache(androidContext()) }
@@ -26,7 +26,6 @@ fun provideService(retrofit: Retrofit): ApiService {
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-
     return Retrofit.Builder()
         .baseUrl(ApiService.ENDPOINT)
         .addConverterFactory(MoshiConverterFactory.create())
@@ -48,10 +47,11 @@ fun provideOkHttpClient(
 
 fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
     val loggingInterceptor = HttpLoggingInterceptor()
-    loggingInterceptor.level = if (BuildConfig.DEBUG)
+    loggingInterceptor.level = if (BuildConfig.DEBUG) {
         HttpLoggingInterceptor.Level.BODY
-    else
+    } else {
         HttpLoggingInterceptor.Level.NONE
+    }
     return loggingInterceptor
 }
 

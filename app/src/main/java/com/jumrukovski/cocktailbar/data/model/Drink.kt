@@ -73,7 +73,7 @@ data class Drink(
         }
     }
 
-    fun getIngredientsWithMeasurements() = mutableListOf<Pair<String,String>>(
+    fun getIngredientsWithMeasurements() = mutableListOf<Pair<String, String>>(
         Pair(strIngredient1, strMeasure1),
         Pair(strIngredient2, strMeasure2),
         Pair(strIngredient3, strMeasure3),

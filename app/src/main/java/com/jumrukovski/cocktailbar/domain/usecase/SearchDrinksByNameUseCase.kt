@@ -7,7 +7,7 @@ import kotlinx.coroutines.withContext
 
 class SearchDrinksByNameUseCase(private val apiRepository: ApiRepository) {
 
-    suspend operator fun invoke(name: String) = withContext(Dispatchers.IO){
+    suspend operator fun invoke(name: String) = withContext(Dispatchers.IO) {
         return@withContext apiRepository.searchDrinksByNameAsync(name).mapDrinksToResponseResult()
     }
 }
