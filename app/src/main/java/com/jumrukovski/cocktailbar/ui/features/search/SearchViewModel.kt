@@ -15,7 +15,9 @@ import kotlinx.coroutines.launch
 class SearchViewModel(private val searchDrinksByName: SearchDrinksByNameUseCase) :
     ViewModel() {
 
-    private val _uiState: MutableStateFlow<UIState<List<Drink>>> = MutableStateFlow(UIState.Loading(false))
+    private val _uiState: MutableStateFlow<UIState<List<Drink>>> = MutableStateFlow(
+        UIState.Loading(false)
+    )
     val uiState: StateFlow<UIState<List<Drink>>> = _uiState.asStateFlow()
 
     fun requestData(name: String) {

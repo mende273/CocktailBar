@@ -15,7 +15,9 @@ import kotlinx.coroutines.launch
 
 class FilterViewModel(private val getFilterList: GetFilterListUseCase) : ViewModel() {
 
-    private val _uiState: MutableStateFlow<UIState<List<Drink>>> = MutableStateFlow(UIState.Loading(true))
+    private val _uiState: MutableStateFlow<UIState<List<Drink>>> = MutableStateFlow(
+        UIState.Loading(true)
+    )
     val uiState: StateFlow<UIState<List<Drink>>> = _uiState.asStateFlow()
 
     enum class FilterOption(val title: String, val param: String) {

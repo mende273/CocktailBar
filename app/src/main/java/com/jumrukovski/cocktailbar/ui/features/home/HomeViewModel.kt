@@ -15,7 +15,9 @@ import kotlinx.coroutines.launch
 class HomeViewModel(private val getCocktailsByFirstLetter: GetCocktailsByFirstLetterUseCase) :
     ViewModel() {
 
-    private val _uiState: MutableStateFlow<UIState<List<Drink>>> = MutableStateFlow(UIState.Loading(true))
+    private val _uiState: MutableStateFlow<UIState<List<Drink>>> = MutableStateFlow(
+        UIState.Loading(true)
+    )
     val uiState: StateFlow<UIState<List<Drink>>> = _uiState.asStateFlow()
 
     val filters = listOf('A'..'Z').flatten()

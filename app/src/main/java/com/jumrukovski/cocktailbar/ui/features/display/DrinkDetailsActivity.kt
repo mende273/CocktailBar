@@ -29,7 +29,11 @@ class DrinkDetailsActivity :
 
     private val itemClickListener =
         object : BaseBindingAdapter.ItemClickListener<Pair<String, String>> {
-            override fun onClick(item: Pair<String, String>, position: Int, sharedViews: Array<View>) {
+            override fun onClick(
+                item: Pair<String, String>,
+                position: Int,
+                sharedViews: Array<View>
+            ) {
                 item.first?.let {
                     IngredientDetailsActivity.start(this@DrinkDetailsActivity, it)
                 }
