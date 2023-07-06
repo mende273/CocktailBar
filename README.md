@@ -9,9 +9,8 @@ https://www.youtube.com/watch?v=C7571DyKZE8
 https://medium.com/@mendejumrukovski/android-networking-in-2020-860a2413ac40
 
 #### **Screenshots**
-![Screenshot 1](images/cocktailbar_sc1.jpg) 
-![Screenshot 2](images/cocktailbar_sc2.jpg)
-![Screenshot 3](images/cocktailbar_sc3.jpg)
-![Screenshot 4](images/cocktailbar_sc4.jpg)
-![Screenshot 5](images/cocktailbar_sc5.jpg)
-![Screenshot 6](images/cocktailbar_sc6.jpg)
+| | |
+| --- | --- |
+| <img src="images/cocktailbar_sc1.jpg" width="250"> | <img src="images/cocktailbar_sc2.jpg" width="250"> |
+| <img src="images/cocktailbar_sc3.jpg" width="250"> | <img src="images/cocktailbar_sc4.jpg" width="250"> |
+| <img src="images/cocktailbar_sc5.jpg" width="250"> | <img src="images/cocktailbar_sc6.jpg" width="250"> |
