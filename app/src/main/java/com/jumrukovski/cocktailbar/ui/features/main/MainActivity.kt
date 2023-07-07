@@ -1,7 +1,6 @@
 package com.jumrukovski.cocktailbar.ui.features.main
 
 import androidx.viewpager2.widget.ViewPager2
-import com.fxn.OnBubbleClickListener
 import com.jumrukovski.cocktailbar.R
 import com.jumrukovski.cocktailbar.databinding.ActivityMainBinding
 import com.jumrukovski.cocktailbar.ui.base.BaseActivity
@@ -19,17 +18,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     private fun setListeners() {
-        binding.bottomNavigation.addBubbleListener(object : OnBubbleClickListener {
-            override fun onBubbleClick(id: Int) {
-                val position = when (id) {
-                    R.id.actionHome -> 0
-                    R.id.actionFavorite -> 1
-                    R.id.actionFilter -> 2
-                    else -> 3
-                }
-                binding.viewPager.setCurrentItem(position, true)
+        binding.bottomNavigation.addBubbleListener { id ->
+            val position = when (id) {
+                R.id.actionHome -> 0
+                R.id.actionFavorite -> 1
+                R.id.actionFilter -> 2
+                else -> 3
             }
-        })
+            binding.viewPager.setCurrentItem(position, true)
+        }
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
 
             override fun onPageSelected(position: Int) {

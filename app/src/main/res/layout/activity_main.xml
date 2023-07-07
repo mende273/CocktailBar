@@ -24,7 +24,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.fxn.BubbleTabBar
+    <io.ak1.BubbleTabBar
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="80dp"
