@@ -75,7 +75,7 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
 
     // Kotlin Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     // LiveCycle
@@ -88,16 +88,16 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
 
     // OkHttp3
-    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
     // Koin Dependency Injection
-    implementation("io.insert-koin:koin-android:3.4.0")
+    implementation("io.insert-koin:koin-android:3.4.3")
     testImplementation("io.insert-koin:koin-test:3.4.0")
     testImplementation("io.insert-koin:koin-test-junit4:3.4.0")
 
     // Coil Image Loader
-    implementation("io.coil-kt:coil:2.2.2")
+    implementation("io.coil-kt:coil:2.4.0")
 
     // Room
     implementation("androidx.room:room-runtime:2.5.2")
