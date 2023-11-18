@@ -8,6 +8,8 @@ import kotlinx.coroutines.withContext
 class GetFilteredDrinksUseCase(private val apiRepository: ApiRepository) {
 
     suspend operator fun invoke(param: String, value: String) = withContext(Dispatchers.IO) {
-        return@withContext apiRepository.getFilteredDrinksAsync(param, value).mapDrinksToResponseResult()
+        return@withContext apiRepository
+            .getFilteredDrinksAsync(param, value)
+            .mapDrinksToResponseResult()
     }
 }

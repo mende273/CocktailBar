@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 
-suspend fun ResponseResult<Ingredient>.mapResponseResultToIngredientUIStateFlow(): Flow<UIState<Ingredient>> {
+suspend fun ResponseResult<Ingredient>
+.mapResponseResultToIngredientUIStateFlow(): Flow<UIState<Ingredient>> {
     val uiState = when (this) {
         is ResponseResult.Error -> UIState.Error(this.code)
         is ResponseResult.Exception -> UIState.Exception(this.exception)
@@ -22,7 +23,8 @@ suspend fun ResponseResult<Ingredient>.mapResponseResultToIngredientUIStateFlow(
     return flowOf(uiState).asFlowWithResult()
 }
 
-suspend fun ResponseResult<List<Drink>>.mapResponseResultToDrinksUIStateFlow(): Flow<UIState<List<Drink>>> {
+suspend fun ResponseResult<List<Drink>>
+.mapResponseResultToDrinksUIStateFlow(): Flow<UIState<List<Drink>>> {
     val uiState = when (this) {
         is ResponseResult.Success ->
             when (this.data.isNullOrEmpty()) {

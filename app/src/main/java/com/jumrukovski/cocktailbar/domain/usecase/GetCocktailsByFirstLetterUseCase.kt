@@ -12,6 +12,8 @@ class GetCocktailsByFirstLetterUseCase(private val apiRepository: ApiRepository)
     suspend operator fun invoke(filter: String): ResponseResult<List<Drink>> = withContext(
         Dispatchers.IO
     ) {
-        return@withContext apiRepository.getCocktailsByFirstLetterAsync(filter).mapDrinksToResponseResult()
+        return@withContext apiRepository
+            .getCocktailsByFirstLetterAsync(filter)
+            .mapDrinksToResponseResult()
     }
 }
