@@ -10,6 +10,8 @@ class GetFilterListUseCase(private val apiRepository: ApiRepository) {
     suspend operator fun invoke(currentFilterParam: String, value: String) = withContext(
         Dispatchers.IO
     ) {
-        return@withContext apiRepository.getFilterListForOptionAsync(currentFilterParam, value).mapDrinksToResponseResult()
+        return@withContext apiRepository
+            .getFilterListForOptionAsync(currentFilterParam, value)
+            .mapDrinksToResponseResult()
     }
 }

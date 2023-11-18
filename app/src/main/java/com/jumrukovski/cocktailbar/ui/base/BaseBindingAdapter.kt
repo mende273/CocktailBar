@@ -23,7 +23,11 @@ abstract class BaseBindingAdapter<I> :
         return BaseBindingViewHolder(binding, this)
     }
 
-    protected abstract fun bind(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): ViewBinding
+    protected abstract fun bind(
+        inflater: LayoutInflater,
+        parent: ViewGroup,
+        viewType: Int
+    ): ViewBinding
 
     override fun getItemCount(): Int = items.size
 

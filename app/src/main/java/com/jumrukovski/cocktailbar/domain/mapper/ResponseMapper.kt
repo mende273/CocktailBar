@@ -29,7 +29,8 @@ fun Response<DrinksResponse<Drink>>.mapDrinkToResponseResult(): ResponseResult<D
     }
 }
 
-fun Response<IngredientsResponse<Ingredient>>.mapIngredientToResponseResult(): ResponseResult<Ingredient> {
+fun Response<IngredientsResponse<Ingredient>>
+.mapIngredientToResponseResult(): ResponseResult<Ingredient> {
     return try {
         return when (this.isSuccessful) {
             true -> ResponseResult.Success(this.body()?.ingredients?.get(0))
