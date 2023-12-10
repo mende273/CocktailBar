@@ -84,19 +84,19 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
 
     // OkHttp3
-    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
     // Koin Dependency Injection
-    implementation("io.insert-koin:koin-android:3.4.3")
-    testImplementation("io.insert-koin:koin-test:3.4.0")
-    testImplementation("io.insert-koin:koin-test-junit4:3.4.0")
+    implementation("io.insert-koin:koin-android:3.5.0")
+    testImplementation("io.insert-koin:koin-test:3.5.0")
+    testImplementation("io.insert-koin:koin-test-junit4:3.5.0")
 
     // Coil Image Loader
-    implementation("io.coil-kt:coil:2.4.0")
+    implementation("io.coil-kt:coil:2.5.0")
 
     // Room
-    implementation("androidx.room:room-runtime:2.6.0")
+    implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-coroutines:2.1.0-alpha04")
-    ksp("androidx.room:room-compiler:2.6.0")
+    ksp("androidx.room:room-compiler:2.6.1")
 }
