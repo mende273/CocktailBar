@@ -1,8 +1,8 @@
 package com.jumrukovski.cocktailbar.domain.usecase
 
-import com.jumrukovski.cocktailbar.data.repository.LocalRepository
+import androidx.lifecycle.LiveData
+import com.jumrukovski.cocktailbar.data.model.Drink
 
-class GetAllFavoriteFromDBUseCase(private val localRepository: LocalRepository) {
-
-    fun getAllFavoriteDrinks() = localRepository.getAllFavoriteDrinks()
+interface GetAllFavoriteFromDBUseCase {
+    operator fun invoke(): LiveData<List<Drink>>
 }

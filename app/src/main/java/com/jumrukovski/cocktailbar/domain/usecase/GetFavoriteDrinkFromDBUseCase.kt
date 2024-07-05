@@ -1,6 +1,6 @@
 package com.jumrukovski.cocktailbar.domain.usecase
 
-import com.jumrukovski.cocktailbar.data.repository.LocalRepository
+import com.jumrukovski.cocktailbar.domain.repository.local.LocalRepository
 
 class GetFavoriteDrinkFromDBUseCase(private val localRepository: LocalRepository) {
 

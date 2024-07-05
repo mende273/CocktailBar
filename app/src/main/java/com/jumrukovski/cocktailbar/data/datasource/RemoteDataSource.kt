@@ -1,4 +1,4 @@
-package com.jumrukovski.cocktailbar.data.network
+package com.jumrukovski.cocktailbar.data.datasource
 
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.data.model.DrinksResponse
@@ -9,7 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
-interface ApiService {
+interface RemoteDataSource {
 
     companion object {
         const val ENDPOINT = "https://www.thecocktaildb.com/api/json/v1/1/"

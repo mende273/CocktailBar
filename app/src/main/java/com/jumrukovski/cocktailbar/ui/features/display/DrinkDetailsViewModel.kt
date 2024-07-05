@@ -48,7 +48,7 @@ class DrinkDetailsViewModel(
 
     fun saveAsFavorite() {
         viewModelScope.launch(Dispatchers.IO) {
-            addFavoriteDrink.addFavorite(drink)
+            addFavoriteDrink(drink)
         }
     }
 
