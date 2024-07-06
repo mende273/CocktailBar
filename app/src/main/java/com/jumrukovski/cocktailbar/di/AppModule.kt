@@ -10,6 +10,7 @@ val appModule = module {
         viewModelModule,
         adapterModule,
         localDataSourceModule,
-        localRepositoryModule
+        localRepositoryModule,
+        dispatchersModule
     )
 }
