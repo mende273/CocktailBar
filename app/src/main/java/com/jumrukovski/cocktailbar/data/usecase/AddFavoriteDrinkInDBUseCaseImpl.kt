@@ -7,7 +7,7 @@ import com.jumrukovski.cocktailbar.domain.usecase.AddFavoriteDrinkInDBUseCase
 class AddFavoriteDrinkInDBUseCaseImpl(private val localRepository: LocalRepository) :
     AddFavoriteDrinkInDBUseCase {
 
-    override fun invoke(drink: Drink) {
+    override suspend fun invoke(drink: Drink) {
         localRepository.addFavorite(drink)
     }
 }

@@ -40,36 +40,24 @@ class DrinkDetailsActivity :
             }
         }
 
-    private fun collectFavoriteData(isFromClick: Boolean) {
-        lifecycleScope.launch {
-            viewModel.getFavoriteDrinkFromDB()
-                .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collectLatest {
-                    var isFav = it != null
-                    if (isFromClick) {
-                        when (isFav) {
-                            true -> viewModel.removeAsFavorite()
-                            false -> viewModel.saveAsFavorite()
-                        }
-                        isFav = !isFav
-                    }
-                    manageFavoriteIcon(isFav)
-                }
-        }
-    }
-
     private fun setObservers() {
         lifecycleScope.launch {
-            viewModel.uiState
+            viewModel.combinedResult
                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
-                .collect { uiState ->
-                    when (uiState) {
-                        is UIState.SuccessWithData -> showData(uiState.data)
+                .collectLatest { state ->
+                    when (state.first) {
+                        is UIState.SuccessWithData -> showData(
+                            (state.first as UIState.SuccessWithData<Drink>).data
+                        )
+
                         is UIState.Error -> "" // todo show error message
                         is UIState.Loading -> "" // todo
                         is UIState.SuccessWithNoData -> "" // todo
                         is UIState.Exception -> "" // todo
+                        null -> "" // todo
                     }
+
+                    manageFavoriteIcon(state.second)
                 }
         }
     }
@@ -98,8 +86,6 @@ class DrinkDetailsActivity :
         binding.thumb.load(drink.strDrinkThumb)
         binding.name.text = drink.strDrink
         viewModel.init(drink)
-        viewModel.requestDrinkDetails()
-        collectFavoriteData(false)
         makeStatusBarTransparent()
         initAdapter()
         setListeners()
@@ -119,13 +105,16 @@ class DrinkDetailsActivity :
             false -> R.drawable.ic_saved_white_24dp
         }
 
-        binding.save.setImageDrawable(ResourcesCompat.getDrawable(resources, res, null))
+        binding.favoriteIcon.setImageDrawable(ResourcesCompat.getDrawable(resources, res, null))
     }
 
     private fun setListeners() {
-        binding.btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
-        binding.instructionsTitle.setOnClickListener { updateInstructionsUI() }
-        binding.save.setOnClickListener { collectFavoriteData(true) }
+        with(binding) {
+            btnBack.setOnClickListener { onBackPressedDispatcher.onBackPressed() }
+            instructionsTitle.setOnClickListener { updateInstructionsUI() }
+            favoriteIcon.setOnClickListener { viewModel.toggleFavorite() }
+        }
+
         ingredientsAdapter.setItemClickListener(itemClickListener)
     }
 

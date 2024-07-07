@@ -2,25 +2,64 @@ package com.jumrukovski.cocktailbar.data.repository.remote
 
 import com.jumrukovski.cocktailbar.data.datasource.RemoteDataSource
 import com.jumrukovski.cocktailbar.domain.repository.remote.RemoteRepository
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 
-class RemoteRepositoryImpl(private val remoteDataSource: RemoteDataSource) : RemoteRepository {
+class RemoteRepositoryImpl(
+    private val remoteDataSource: RemoteDataSource,
+    private val ioDispatcher: CoroutineDispatcher
+) : RemoteRepository {
 
-    override suspend fun getCocktailsByFirstLetterAsync(firstLetter: String) =
-        remoteDataSource.getCocktailsByFirstLetterAsync(firstLetter)
+    override suspend fun getCocktailsByFirstLetter(firstLetter: String) =
+        withContext(ioDispatcher) {
+            runCatching {
+                remoteDataSource
+                    .getCocktailsByFirstLetter(firstLetter).drinks
+            }
+        }
 
-    override suspend fun searchDrinksByNameAsync(name: String) =
-        remoteDataSource.searchDrinksByNameAsync(
-            name
-        )
+    override suspend fun searchDrinksByName(name: String) =
+        withContext(ioDispatcher) {
+            runCatching {
+                remoteDataSource
+                    .searchDrinksByName(name).drinks
+            }
+        }
 
-    override suspend fun getFilterListForOptionAsync(param: String, value: String) =
-        remoteDataSource.getFilterListForOptionAsync(mapOf(param to value))
+    override suspend fun getFilterListForOption(param: String, value: String) =
+        withContext(ioDispatcher) {
+            runCatching {
+                remoteDataSource
+                    .getFilterListForOption(mapOf(param to value))
+                    .drinks
+            }
+        }
 
-    override suspend fun getFilteredDrinksAsync(param: String, value: String) =
-        remoteDataSource.getFilteredDrinksAsync(mapOf(param to value))
+    override suspend fun getFilteredDrinks(param: String, value: String) =
+        withContext(ioDispatcher) {
+            runCatching {
+                remoteDataSource
+                    .getFilteredDrinks(mapOf(param to value)).drinks
+            }
+        }
 
-    override suspend fun getDrinkDetailsAsync(id: Long) = remoteDataSource.getDrinkDetailsAsync(id)
+    override suspend fun getDrinkDetails(id: Long) =
+        withContext(ioDispatcher) {
+            runCatching {
+                remoteDataSource
+                    .getDrinkDetails(id)
+                    .drinks
+                    .first()
+            }
+        }
 
-    override suspend fun searchIngredientAsync(name: String) =
-        remoteDataSource.searchIngredientAsync(name)
+    override suspend fun searchIngredient(name: String) =
+        withContext(ioDispatcher) {
+            runCatching {
+                remoteDataSource
+                    .searchIngredient(name)
+                    .ingredients
+                    .first()
+            }
+        }
 }

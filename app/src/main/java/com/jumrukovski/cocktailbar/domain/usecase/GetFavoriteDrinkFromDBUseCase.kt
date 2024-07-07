@@ -1,8 +1,7 @@
 package com.jumrukovski.cocktailbar.domain.usecase
 
-import com.jumrukovski.cocktailbar.domain.repository.local.LocalRepository
+import com.jumrukovski.cocktailbar.data.model.Drink
 
-class GetFavoriteDrinkFromDBUseCase(private val localRepository: LocalRepository) {
-
-    fun getFavoriteDrink(id: Long) = localRepository.getFavorite(id)
+fun interface GetFavoriteDrinkFromDBUseCase {
+    suspend operator fun invoke(id: Long): Drink?
 }
