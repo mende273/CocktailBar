@@ -15,7 +15,7 @@ interface DrinkDao {
     fun all(): LiveData<List<Drink>>
 
     @Query("SELECT * FROM Drink WHERE idDrink=:id")
-    fun get(id: Long): Drink
+    fun get(id: Long): Drink?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun add(entity: Drink)

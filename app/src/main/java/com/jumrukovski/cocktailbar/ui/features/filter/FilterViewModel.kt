@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.data.model.Filter
 import com.jumrukovski.cocktailbar.domain.usecase.GetFilterListUseCase
-import com.jumrukovski.cocktailbar.ui.mapper.mapResponseResultToDrinksUIStateFlow
+import com.jumrukovski.cocktailbar.ui.mapper.mapResultToDrinksUIStateFlow
 import com.jumrukovski.cocktailbar.ui.state.UIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.launch
 
-class FilterViewModel(private val getFilterList: GetFilterListUseCase) : ViewModel() {
+class FilterViewModel(private val getFilterListUseCase: GetFilterListUseCase) : ViewModel() {
 
     private val _uiState: MutableStateFlow<UIState<List<Drink>>> = MutableStateFlow(
         UIState.Loading(true)
@@ -42,8 +42,8 @@ class FilterViewModel(private val getFilterList: GetFilterListUseCase) : ViewMod
     fun requestData(filter: String) {
         setCurrentFilter(filter)
         viewModelScope.launch {
-            val responseResult = getFilterList(currentFilter.param, "list")
-            _uiState.emitAll(responseResult.mapResponseResultToDrinksUIStateFlow())
+            val responseResult = getFilterListUseCase(currentFilter.param, "list")
+            _uiState.emitAll(responseResult.mapResultToDrinksUIStateFlow())
         }
     }
 

@@ -8,5 +8,5 @@ import com.jumrukovski.cocktailbar.domain.usecase.GetAllFavoriteFromDBUseCase
 class FavoriteCocktailsViewModel(getAllFavoriteFromDBUseCase: GetAllFavoriteFromDBUseCase) :
     ViewModel() {
 
-    val allFavorites: LiveData<List<Drink>> = getAllFavoriteFromDBUseCase.getAllFavoriteDrinks()
+    val allFavorites: LiveData<List<Drink>> = getAllFavoriteFromDBUseCase()
 }

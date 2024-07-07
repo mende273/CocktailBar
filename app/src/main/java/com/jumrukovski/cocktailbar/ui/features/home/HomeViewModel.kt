@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jumrukovski.cocktailbar.data.model.Drink
 import com.jumrukovski.cocktailbar.domain.usecase.GetCocktailsByFirstLetterUseCase
-import com.jumrukovski.cocktailbar.ui.mapper.mapResponseResultToDrinksUIStateFlow
+import com.jumrukovski.cocktailbar.ui.mapper.mapResultToDrinksUIStateFlow
 import com.jumrukovski.cocktailbar.ui.state.UIState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +12,10 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val getCocktailsByFirstLetter: GetCocktailsByFirstLetterUseCase) :
+class HomeViewModel(
+    private val getCocktailsByFirstLetterUseCase:
+        GetCocktailsByFirstLetterUseCase
+) :
     ViewModel() {
 
     private val _uiState: MutableStateFlow<UIState<List<Drink>>> = MutableStateFlow(
@@ -26,8 +29,8 @@ class HomeViewModel(private val getCocktailsByFirstLetter: GetCocktailsByFirstLe
         val filter = filters[filterPosition].toString()
 
         viewModelScope.launch {
-            val responseResult = getCocktailsByFirstLetter(filter)
-            _uiState.emitAll(responseResult.mapResponseResultToDrinksUIStateFlow())
+            val responseResult = getCocktailsByFirstLetterUseCase(filter)
+            _uiState.emitAll(responseResult.mapResultToDrinksUIStateFlow())
         }
     }
 }

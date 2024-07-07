@@ -1,13 +1,7 @@
 package com.jumrukovski.cocktailbar.domain.usecase
 
-import com.jumrukovski.cocktailbar.data.repository.ApiRepository
-import com.jumrukovski.cocktailbar.domain.mapper.mapDrinksToResponseResult
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.jumrukovski.cocktailbar.data.model.Drink
 
-class SearchDrinksByNameUseCase(private val apiRepository: ApiRepository) {
-
-    suspend operator fun invoke(name: String) = withContext(Dispatchers.IO) {
-        return@withContext apiRepository.searchDrinksByNameAsync(name).mapDrinksToResponseResult()
-    }
+fun interface SearchDrinksByNameUseCase {
+    suspend operator fun invoke(name: String): Result<List<Drink>>
 }

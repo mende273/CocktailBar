@@ -2,7 +2,7 @@ package com.jumrukovski.cocktailbar.di
 
 import android.content.Context
 import com.jumrukovski.cocktailbar.BuildConfig
-import com.jumrukovski.cocktailbar.data.network.ApiService
+import com.jumrukovski.cocktailbar.data.datasource.RemoteDataSource
 import com.jumrukovski.cocktailbar.data.network.NoConnectionInterceptor
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -13,7 +13,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 val networkModule = module {
-    single { provideService(get()) }
     single { provideRetrofit(get()) }
     single { provideOkHttpClient(get(), get(), get()) }
     single { provideHttpLoggingInterceptor() }
@@ -21,13 +20,9 @@ val networkModule = module {
     single { provideHttpCache(androidContext()) }
 }
 
-fun provideService(retrofit: Retrofit): ApiService {
-    return retrofit.create(ApiService::class.java)
-}
-
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
-        .baseUrl(ApiService.ENDPOINT)
+        .baseUrl(RemoteDataSource.ENDPOINT)
         .addConverterFactory(MoshiConverterFactory.create())
         .client(okHttpClient)
         .build()

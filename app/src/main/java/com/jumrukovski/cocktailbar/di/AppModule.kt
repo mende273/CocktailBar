@@ -5,10 +5,12 @@ import org.koin.dsl.module
 val appModule = module {
     includes(
         networkModule,
-        apiRepositoryModule,
+        remoteDataSourceModule,
+        remoteRepositoryModule,
         viewModelModule,
         adapterModule,
-        dbModule,
-        localRepositoryModule
+        localDataSourceModule,
+        localRepositoryModule,
+        dispatchersModule
     )
 }

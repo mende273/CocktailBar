@@ -7,8 +7,8 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.jumrukovski.cocktailbar.R
+import com.jumrukovski.cocktailbar.data.datasource.RemoteDataSource
 import com.jumrukovski.cocktailbar.data.model.Ingredient
-import com.jumrukovski.cocktailbar.data.network.ApiService
 import com.jumrukovski.cocktailbar.databinding.ActivityIngredientDetailsBinding
 import com.jumrukovski.cocktailbar.ui.base.BaseActivity
 import com.jumrukovski.cocktailbar.ui.state.UIState
@@ -58,7 +58,7 @@ class IngredientDetailsActivity :
     }
 
     private fun loadThumbnail(name: String) {
-        binding.thumb.load("${ApiService.INGREDIENT_IMAGES_ENDPOINT}$name.png")
+        binding.thumb.load("${RemoteDataSource.INGREDIENT_IMAGES_ENDPOINT}$name.png")
     }
 
     override fun getLayoutRes() = R.layout.activity_ingredient_details
