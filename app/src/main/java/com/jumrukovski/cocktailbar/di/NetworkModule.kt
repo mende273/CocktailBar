@@ -1,13 +1,11 @@
 package com.jumrukovski.cocktailbar.di
 
-import android.content.Context
 import com.jumrukovski.cocktailbar.BuildConfig
 import com.jumrukovski.cocktailbar.data.datasource.RemoteDataSource
+import com.jumrukovski.cocktailbar.data.network.CacheInterceptor
 import com.jumrukovski.cocktailbar.data.network.NoConnectionInterceptor
-import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -17,7 +15,7 @@ val networkModule = module {
     single { provideOkHttpClient(get(), get(), get()) }
     single { provideHttpLoggingInterceptor() }
     single { provideNoConnectionInterceptor() }
-    single { provideHttpCache(androidContext()) }
+    single { provideCacheInterceptor() }
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
@@ -30,13 +28,13 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
 
 fun provideOkHttpClient(
     httpLoggingInterceptor: HttpLoggingInterceptor,
-    cache: Cache,
-    noConnectionInterceptor: NoConnectionInterceptor
+    noConnectionInterceptor: NoConnectionInterceptor,
+    cacheInterceptor: CacheInterceptor
 ): OkHttpClient {
     val builder = OkHttpClient.Builder()
+        .addNetworkInterceptor(cacheInterceptor)
         .addInterceptor(httpLoggingInterceptor)
         .addInterceptor(noConnectionInterceptor)
-        .cache(cache)
     return builder.build()
 }
 
@@ -50,9 +48,6 @@ fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
     return loggingInterceptor
 }
 
-fun provideHttpCache(context: Context): Cache {
-    val cacheSize = 10 * 1024 * 1024
-    return Cache(context.cacheDir, cacheSize.toLong())
-}
+fun provideCacheInterceptor(): CacheInterceptor = CacheInterceptor()
 
 fun provideNoConnectionInterceptor(): NoConnectionInterceptor = NoConnectionInterceptor()
