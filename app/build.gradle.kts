@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId = "com.jumrukovski.cocktailbar"
         minSdk = 28
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -75,9 +75,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
 
     // LiveCycle
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.5")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.5")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
 
     // Retrofit2
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
