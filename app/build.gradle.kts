@@ -88,9 +88,9 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
     // Koin Dependency Injection
-    implementation("io.insert-koin:koin-android:3.5.6")
-    testImplementation("io.insert-koin:koin-test:3.5.6")
-    testImplementation("io.insert-koin:koin-test-junit4:3.5.6")
+    implementation("io.insert-koin:koin-android:4.0.0")
+    testImplementation("io.insert-koin:koin-test:4.0.0")
+    testImplementation("io.insert-koin:koin-test-junit4:4.0.0")
 
     // Coil Image Loader
     implementation("io.coil-kt:coil:2.7.0")
